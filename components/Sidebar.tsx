@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
                 src={league.logo} 
                 alt={league.name} 
                 className="w-5 h-5 object-contain"
-                onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'}
+                onError={(e: any) => e.target.src = 'https://www.footballstreams.com/Casino/images/icon.png'}
               />
               <span className="text-[13px] font-bold text-slate-700 dark:text-slate-300 group-hover:text-green-500 transition-colors">{league.name}</span>
             </div>

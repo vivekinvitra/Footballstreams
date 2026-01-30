@@ -157,7 +157,7 @@ const Header: React.FC = () => {
                                   src={sub.icon} 
                                   alt="" 
                                   className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" 
-                                  onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'}
+                                  onError={(e: any) => e.target.src = 'assets/img/leagues/default.png'}
                                 />
                                 <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
                                   {sub.name}
@@ -196,7 +196,7 @@ const Header: React.FC = () => {
                           className="flex items-center space-x-3 group cursor-pointer"
                           onClick={() => setActiveMenu(null)}
                         >
-                          <img src={league.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'} />
+                          <img src={league.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'assets/img/leagues/default.png'} />
                           <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">{league.name}</span>
                         </Link>
                       ))}
@@ -213,7 +213,7 @@ const Header: React.FC = () => {
                           className="flex items-center space-x-3 group cursor-pointer"
                           onClick={() => setActiveMenu(null)}
                         >
-                          <img src={cat.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'} />
+                          <img src={cat.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'assets/img/leagues/default.png'} />
                           <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">{cat.name}</span>
                         </Link>
                       ))}

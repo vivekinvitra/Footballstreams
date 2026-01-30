@@ -21,35 +21,35 @@ export const getPopularCategories = () => [
   {
     categoryName: 'England',
     subCategories: [
-      { name: 'English Premier League', icon: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png', country: 'England' },
-      { name: 'EFL Championship', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'England' },
-      { name: 'FA Cup', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'England' },
+      { name: 'English Premier League', icon: 'assets/img/leagues/premierleague.png', country: 'England' },
+      { name: 'EFL Championship', icon: 'assets/img/leagues/default.png', country: 'England' },
+      { name: 'FA Cup', icon: 'assets/img/leagues/default.png', country: 'England' },
     ]
   },
   {
     categoryName: 'Spain',
     subCategories: [
-      { name: 'Spanish La Liga', icon: 'https://www.footballstreams.com/assets/img/leagues/laliga.png', country: 'Spain' },
-      { name: 'Copa del Rey', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'Spain' },
+      { name: 'Spanish La Liga', icon: 'assets/img/leagues/laliga.png', country: 'Spain' },
+      { name: 'Copa del Rey', icon: 'assets/img/leagues/default.png', country: 'Spain' },
     ]
   },
   {
     categoryName: 'Germany',
     subCategories: [
-      { name: 'Bundesliga', icon: 'https://www.footballstreams.com/assets/img/leagues/bundesliga.png', country: 'Germany' },
-      { name: 'DFB Pokal', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'Germany' },
+      { name: 'Bundesliga', icon: 'assets/img/leagues/bundesliga.png', country: 'Germany' },
+      { name: 'DFB Pokal', icon: 'assets/img/leagues/default.png', country: 'Germany' },
     ]
   },
   {
     categoryName: 'France',
     subCategories: [
-      { name: 'French Ligue 1', icon: 'https://www.footballstreams.com/assets/img/leagues/ligue1.png', country: 'France' },
+      { name: 'French Ligue 1', icon: 'assets/img/leagues/ligue1.png', country: 'France' },
     ]
   },
   {
     categoryName: 'Italy',
     subCategories: [
-      { name: 'Italian Serie A', icon: 'https://www.footballstreams.com/assets/img/leagues/seriea.png', country: 'Italy' },
+      { name: 'Italian Serie A', icon: 'assets/img/leagues/seriea.png', country: 'Italy' },
     ]
   }
 ];
@@ -68,29 +68,29 @@ export const getAllCountries = () => [
 ];
 
 export const getInternationalLeagues = () => [
-  { name: 'UEFA Champions League', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'UEFA Europa League', icon: 'https://www.footballstreams.com/assets/img/leagues/europa-league.png', country: 'International' },
-  { name: 'UEFA Europa Conference League', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'FIFA World Cup', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'FIFA World Cup qualification (UEFA)', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'FIFA World Cup qualification (AFC)', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'UEFA Nations League', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
-  { name: 'Copa América', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
+  { name: 'UEFA Champions League', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'UEFA Europa League', icon: 'assets/img/leagues/europa-league.png', country: 'International' },
+  { name: 'UEFA Europa Conference League', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'FIFA World Cup', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'FIFA World Cup qualification (UEFA)', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'FIFA World Cup qualification (AFC)', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'UEFA Nations League', icon: 'assets/img/leagues/default.png', country: 'International' },
+  { name: 'Copa América', icon: 'assets/img/leagues/default.png', country: 'International' },
 ];
 
 export const getNewsCategories = () => [
-  { name: 'Transfer News', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
-  { name: 'Match Previews', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
-  { name: 'Injury Updates', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
-  { name: 'Betting Tips', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
-  { name: 'Live Reports', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
-  { name: 'Manager Interviews', icon: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'News' },
+  { name: 'Transfer News', icon: 'assets/img/leagues/default.png', country: 'News' },
+  { name: 'Match Previews', icon: 'assets/img/leagues/default.png', country: 'News' },
+  { name: 'Injury Updates', icon: 'assets/img/leagues/default.png', country: 'News' },
+  { name: 'Betting Tips', icon: 'assets/img/leagues/default.png', country: 'News' },
+  { name: 'Live Reports', icon: 'assets/img/leagues/default.png', country: 'News' },
+  { name: 'Manager Interviews', icon: 'assets/img/leagues/default.png', country: 'News' },
 ];
 
 export const getMegaMenuOffers = () => [
-  { name: 'Stake.com', logo: 'https://www.footballstreams.com/assets/img/bookmakers/stake.png', desc: 'Claim the maximum new Stake bonus offer when you join with promo code MAXBET. Deposit $1500. Get $3000. That\'s a 200% bonus. Over 18s only. T&Cs apply.' },
-  { name: '1xBet', logo: 'https://www.footballstreams.com/assets/img/bookmakers/1xbet.png', desc: 'Get $30 more bonus when you use the 1xbet code NEWBONUS. T&Cs apply. Over 18s only. Deposit $100, get $130.' },
-  { name: 'Linebet', logo: 'https://www.footballstreams.com/assets/img/leagues/default.png', desc: 'Register with Promo code NEWBONUS to unlock special betting rewards and exclusive features.' },
+  { name: 'Stake.com', logo: 'assets/img/bookmakers/stake.png', desc: 'Claim the maximum new Stake bonus offer when you join with promo code MAXBET. Deposit $1500. Get $3000. That\'s a 200% bonus. Over 18s only. T&Cs apply.' },
+  { name: '1xBet', logo: 'assets/img/bookmakers/1xbet.png', desc: 'Get $30 more bonus when you use the 1xbet code NEWBONUS. T&Cs apply. Over 18s only. Deposit $100, get $130.' },
+  { name: 'Linebet', logo: 'assets/img/leagues/default.png', desc: 'Register with Promo code NEWBONUS to unlock special betting rewards and exclusive features.' },
 ];
 
 export const getSupportLinks = () => [
@@ -111,16 +111,16 @@ export const getFooterQuickLinks = () => [
  * Supercat items (formerly Popular Leagues)
  */
 export const getSupercatItems = () => [
-  { name: 'UEFA Europa League', time: '14 hr', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/europa-league.png', country: 'International' },
-  { name: 'Eredivisie', time: '1 day', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/eredivisie.png', country: 'Netherlands' },
-  { name: 'Bundesliga', time: '1 day', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/bundesliga.png', country: 'Germany' },
-  { name: 'French Ligue 1', time: '1 day', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/ligue1.png', country: 'France' },
-  { name: 'Italian Serie A', time: '1 day', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/seriea.png', country: 'Italy' },
-  { name: 'Spanish La Liga', time: '1 day', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/laliga.png', country: 'Spain' },
-  { name: 'English Premier League', time: '2 days', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png', country: 'England' },
-  { name: 'Copa del Rey', time: '3 days', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'Spain' },
-  { name: 'FA Cup', time: '4 days', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'England' },
-  { name: 'UEFA Champions League', time: '5 days', status: 'upcoming', logo: 'https://www.footballstreams.com/assets/img/leagues/default.png', country: 'International' },
+  { name: 'UEFA Europa League', time: '14 hr', status: 'upcoming', logo: 'assets/img/leagues/europa-league.png', country: 'International' },
+  { name: 'Eredivisie', time: '1 day', status: 'upcoming', logo: 'assets/img/leagues/eredivisie.png', country: 'Netherlands' },
+  { name: 'Bundesliga', time: '1 day', status: 'upcoming', logo: 'assets/img/leagues/bundesliga.png', country: 'Germany' },
+  { name: 'French Ligue 1', time: '1 day', status: 'upcoming', logo: 'assets/img/leagues/ligue1.png', country: 'France' },
+  { name: 'Italian Serie A', time: '1 day', status: 'upcoming', logo: 'assets/img/leagues/seriea.png', country: 'Italy' },
+  { name: 'Spanish La Liga', time: '1 day', status: 'upcoming', logo: 'assets/img/leagues/laliga.png', country: 'Spain' },
+  { name: 'English Premier League', time: '2 days', status: 'upcoming', logo: 'assets/img/leagues/premierleague.png', country: 'England' },
+  { name: 'Copa del Rey', time: '3 days', status: 'upcoming', logo: 'assets/img/leagues/default.png', country: 'Spain' },
+  { name: 'FA Cup', time: '4 days', status: 'upcoming', logo: 'assets/img/leagues/default.png', country: 'England' },
+  { name: 'UEFA Champions League', time: '5 days', status: 'upcoming', logo: 'assets/img/leagues/default.png', country: 'International' },
 ];
 
 /**
@@ -139,7 +139,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Europa League',
       country: 'World',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/europa-league.png',
+      countryFlag: 'assets/img/leagues/europa-league.png',
       status: 'FINISHED',
       odds: { home: 1.36, draw: 5.60, away: 8.65 },
       prediction: 'W1',
@@ -154,7 +154,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'English Premier League',
       country: 'England',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png',
+      countryFlag: 'assets/img/leagues/premierleague.png',
       status: 'LIVE',
       odds: { home: 1.85, draw: 3.50, away: 4.20 },
       prediction: 'W1',
@@ -168,7 +168,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'English Premier League',
       country: 'England',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png',
+      countryFlag: 'assets/img/leagues/premierleague.png',
       status: 'UPCOMING',
       odds: { home: 1.65, draw: 4.00, away: 5.50 },
       prediction: 'W1',
@@ -183,7 +183,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Spanish La Liga',
       country: 'Spain',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/laliga.png',
+      countryFlag: 'assets/img/leagues/laliga.png',
       status: 'FINISHED',
       odds: { home: 2.10, draw: 3.40, away: 3.50 },
       prediction: 'W1',
@@ -197,7 +197,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Spanish La Liga',
       country: 'Spain',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/laliga.png',
+      countryFlag: 'assets/img/leagues/laliga.png',
       status: 'LIVE',
       odds: { home: 1.75, draw: 3.60, away: 4.80 },
       prediction: 'X',
@@ -212,7 +212,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Bundesliga',
       country: 'Germany',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/bundesliga.png',
+      countryFlag: 'assets/img/leagues/bundesliga.png',
       status: 'FINISHED',
       odds: { home: 1.90, draw: 3.75, away: 3.80 },
       prediction: 'X',
@@ -226,7 +226,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Bundesliga',
       country: 'Germany',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/bundesliga.png',
+      countryFlag: 'assets/img/leagues/bundesliga.png',
       status: 'LIVE',
       odds: { home: 2.25, draw: 3.50, away: 3.10 },
       prediction: 'W1',
@@ -241,7 +241,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'Italian Serie A',
       country: 'Italy',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/seriea.png',
+      countryFlag: 'assets/img/leagues/seriea.png',
       status: 'UPCOMING',
       odds: { home: 1.95, draw: 3.25, away: 4.50 },
       prediction: 'W1',
@@ -256,7 +256,7 @@ const generateMockMatches = () => {
       date: todayStr,
       league: 'French Ligue 1',
       country: 'France',
-      countryFlag: 'https://www.footballstreams.com/assets/img/leagues/ligue1.png',
+      countryFlag: 'assets/img/leagues/ligue1.png',
       status: 'FINISHED',
       odds: { home: 1.45, draw: 4.75, away: 6.50 },
       prediction: 'W1',
@@ -271,8 +271,8 @@ export const getMatches = async () => {
 };
 
 export const getOffers = () => [
-  { bookmaker: 'Stake', logo: 'https://www.footballstreams.com/assets/img/bookmakers/stake.png', bonus: 'Deposit $1500 Get $3000', promoCode: 'MAXBET', description: 'Claim the maximum new Stake bonus offer.', claimUrl: '#' },
-  { bookmaker: '1XBET', logo: 'https://www.footballstreams.com/assets/img/bookmakers/1xbet.png', bonus: '$130 Bonus', promoCode: 'NEWBONUS', description: 'Get $30 extra bonus.', claimUrl: '#' },
+  { bookmaker: 'Stake', logo: 'assets/img/bookmakers/stake.png', bonus: 'Deposit $1500 Get $3000', promoCode: 'MAXBET', description: 'Claim the maximum new Stake bonus offer.', claimUrl: '#' },
+  { bookmaker: '1XBET', logo: 'assets/img/bookmakers/1xbet.png', bonus: '$130 Bonus', promoCode: 'NEWBONUS', description: 'Get $30 extra bonus.', claimUrl: '#' },
 ];
 
 export const getMatchAnalysis = (match) => ({
@@ -301,8 +301,8 @@ export const getSearchData = () => [
   { id: 's6', type: 'Team', name: 'Arsenal', country: 'England', followers: '3M', logo: 'https://img.vscore.com/logo/team/arsenal.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
   { id: 's7', type: 'Player', name: 'Lionel Messi', country: 'Argentina', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=messi', flag: 'https://flagcdn.com/w40/ar.png', subtitle: 'Forward' },
   { id: 's8', type: 'Player', name: 'Cristiano Ronaldo', country: 'Portugal', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=cr7', flag: 'https://flagcdn.com/w40/pt.png', subtitle: 'Forward' },
-  { id: 's9', type: 'Competition', name: 'English Premier League', country: 'England', followers: '5M', logo: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Top Division' },
-  { id: 's10', type: 'Competition', name: 'Spanish La Liga', country: 'Spain', followers: '4M', logo: 'https://www.footballstreams.com/assets/img/leagues/laliga.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Top Division' },
-  { id: 'europa-1', type: 'Match', name: 'Genk vs Malmoe FF', country: 'World', logo: 'https://www.footballstreams.com/assets/img/leagues/europa-league.png', flag: 'https://flagcdn.com/w40/un.png', subtitle: 'Europa League' },
+  { id: 's9', type: 'Competition', name: 'English Premier League', country: 'England', followers: '5M', logo: 'assets/img/leagues/premierleague.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Top Division' },
+  { id: 's10', type: 'Competition', name: 'Spanish La Liga', country: 'Spain', followers: '4M', logo: 'assets/img/leagues/laliga.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Top Division' },
+  { id: 'europa-1', type: 'Match', name: 'Genk vs Malmoe FF', country: 'World', logo: 'assets/img/leagues/europa-league.png', flag: 'https://flagcdn.com/w40/un.png', subtitle: 'Europa League' },
   { id: 'epl-1', type: 'Match', name: 'Man City vs Arsenal', country: 'England', logo: 'https://img.vscore.com/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Premier League' },
 ];
