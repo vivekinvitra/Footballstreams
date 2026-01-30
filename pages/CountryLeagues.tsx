@@ -23,7 +23,8 @@ const CountryLeagues: React.FC = () => {
     fetchData();
   }, [countryName]);
 
-  const groupedByLeague = useMemo(() => {
+  // Use explicit typing for groupedByLeague to avoid inference issues
+  const groupedByLeague = useMemo<Record<string, Match[]>>(() => {
     const groups: Record<string, Match[]> = {};
     matches.forEach(m => {
       if (!groups[m.league]) groups[m.league] = [];
@@ -32,7 +33,8 @@ const CountryLeagues: React.FC = () => {
     return groups;
   }, [matches]);
 
-  const availableLeagues = useMemo(() => Object.keys(groupedByLeague), [groupedByLeague]);
+  // Use explicit type casting for availableLeagues to resolve 'unknown' property errors
+  const availableLeagues = useMemo(() => Object.keys(groupedByLeague) as string[], [groupedByLeague]);
 
   return (
     <div className="w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300">

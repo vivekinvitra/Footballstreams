@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import { matchService } from '../services/matchService';
-import { Match } from '../types';
+import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
 
@@ -19,7 +19,8 @@ const Live: React.FC = () => {
     fetchData();
   }, []);
 
-  const groupedMatches = useMemo(() => matchService.groupMatches(matches), [matches]);
+  // Use explicit type casting for groupedMatches to resolve 'unknown' property errors in the template
+  const groupedMatches = useMemo(() => matchService.groupMatches(matches) as Record<string, GroupedMatch>, [matches]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 w-full transition-colors duration-300">

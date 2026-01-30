@@ -82,3 +82,13 @@ export interface Match {
   description?: string;
   analysis?: MatchAnalysis;
 }
+
+/**
+ * Interface for matches grouped by league/country
+ */
+export interface GroupedMatch {
+  matches: Match[];
+  country: string;
+  flag: string;
+  league: string;
+}

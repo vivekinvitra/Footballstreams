@@ -281,3 +281,21 @@ export const getMatchAnalysis = (match) => ({
   relatedVideos: [],
   bettingOffers: getOffers()
 });
+
+/**
+ * Search-specific mock data
+ */
+export const getSearchData = () => [
+  { id: 's1', type: 'Team', name: 'Real Madrid', country: 'Spain', followers: '6.6M', logo: 'https://img.vscore.com/logo/team/real-madrid.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
+  { id: 's2', type: 'Team', name: 'Barcelona', country: 'Spain', followers: '6.3M', logo: 'https://img.vscore.com/logo/team/barcelona.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
+  { id: 's3', type: 'Team', name: 'Manchester City', country: 'England', followers: '3.6M', logo: 'https://img.vscore.com/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's4', type: 'Team', name: 'Liverpool', country: 'England', followers: '3.5M', logo: 'https://img.vscore.com/logo/team/liverpool.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's5', type: 'Team', name: 'Manchester United', country: 'England', followers: '3.1M', logo: 'https://img.vscore.com/logo/team/manchester-united.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's6', type: 'Team', name: 'Arsenal', country: 'England', followers: '3M', logo: 'https://img.vscore.com/logo/team/arsenal.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's7', type: 'Player', name: 'Lionel Messi', country: 'Argentina', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=messi', flag: 'https://flagcdn.com/w40/ar.png', subtitle: 'Forward' },
+  { id: 's8', type: 'Player', name: 'Cristiano Ronaldo', country: 'Portugal', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=cr7', flag: 'https://flagcdn.com/w40/pt.png', subtitle: 'Forward' },
+  { id: 's9', type: 'Competition', name: 'English Premier League', country: 'England', followers: '5M', logo: 'https://www.footballstreams.com/assets/img/leagues/premierleague.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Top Division' },
+  { id: 's10', type: 'Competition', name: 'Spanish La Liga', country: 'Spain', followers: '4M', logo: 'https://www.footballstreams.com/assets/img/leagues/laliga.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Top Division' },
+  { id: 'europa-1', type: 'Match', name: 'Genk vs Malmoe FF', country: 'World', logo: 'https://www.footballstreams.com/assets/img/leagues/europa-league.png', flag: 'https://flagcdn.com/w40/un.png', subtitle: 'Europa League' },
+  { id: 'epl-1', type: 'Match', name: 'Man City vs Arsenal', country: 'England', logo: 'https://img.vscore.com/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Premier League' },
+];

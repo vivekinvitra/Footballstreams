@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { matchService } from '../services/matchService';
 import { categoryService } from '../services/categoryService';
 import { useTheme } from '../contexts/ThemeContext';
+import SearchOverlay from './SearchOverlay';
 
 const Header: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
@@ -106,7 +108,11 @@ const Header: React.FC = () => {
             )}
           </button>
           
-          <button className="p-2 hover:bg-slate-800 rounded-full transition-colors text-gray-300 hover:text-white">
+          <button 
+            onClick={() => setIsSearchOpen(true)}
+            className="p-2 hover:bg-slate-800 rounded-full transition-colors text-gray-300 hover:text-white"
+            aria-label="Search"
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -119,6 +125,8 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
 
       {activeMenu && (
         <div ref={menuRef} className="absolute top-16 left-0 w-full bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-b dark:border-slate-800 shadow-2xl animate-in slide-in-from-top-2 duration-200">

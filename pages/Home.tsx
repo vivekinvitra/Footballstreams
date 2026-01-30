@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { matchService } from '../services/matchService';
-import { Match } from '../types';
+import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
 
@@ -47,7 +47,8 @@ const Home: React.FC = () => {
     fetchData();
   }, [dateFilter, yesterdayStr, todayStr, tomorrowStr]);
 
-  const groupedMatches = useMemo(() => matchService.groupMatches(matches), [matches]);
+  // Use explicit type casting for groupedMatches to resolve 'unknown' property errors in the template
+  const groupedMatches = useMemo(() => matchService.groupMatches(matches) as Record<string, GroupedMatch>, [matches]);
   const [allMatchesForCount, setAllMatchesForCount] = useState<Match[]>([]);
 
   useEffect(() => {

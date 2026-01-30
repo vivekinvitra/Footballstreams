@@ -53,6 +53,16 @@ class MatchService {
     return dataStore.getOffers();
   }
 
+  async search(query, type = 'All') {
+    const data = dataStore.getSearchData();
+    return data.filter(item => {
+      const matchesQuery = item.name.toLowerCase().includes(query.toLowerCase()) || 
+                           item.country.toLowerCase().includes(query.toLowerCase());
+      const matchesType = type === 'All' || item.type === type;
+      return matchesQuery && matchesType;
+    });
+  }
+
   calculateOddsPercentages(odds) {
     if (!odds) return { p1: 0, pX: 0, p2: 0 };
     const total = (1 / odds.home) + (1 / odds.draw) + (1 / odds.away);
