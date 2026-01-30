@@ -1,5 +1,5 @@
 
-import * as dataStore from './dataStore';
+import * as dataStore from '../Lib/dataStore';
 
 class CategoryService {
   getSuperCategories() {
