@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Football Streams - Live Scores & Fixtures</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +29,6 @@
       }
       body {
         font-family: 'Inter', sans-serif;
-        background-color: #f3f4f6;
       }
       #root {
         min-height: 100%;
@@ -34,6 +45,9 @@
         background: #d1d5db;
         border-radius: 10px;
       }
+      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #334155;
+      }
     </style>
   <script type="importmap">
 {
@@ -46,7 +60,7 @@
 }
 </script>
 </head>
-  <body class="h-full">
+  <body class="h-full bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
     <div id="root" class="min-h-full"></div>
   </body>
 </html>

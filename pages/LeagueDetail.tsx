@@ -16,7 +16,6 @@ const LeagueDetail: React.FC = () => {
       setLoading(true);
       if (countryName && leagueName) {
         const data = await matchService.getMatchesByLeague(countryName, leagueName);
-        // Fix: Added type assertion to bridge JS data to Match[]
         setMatches(data as Match[]);
       }
       setLoading(false);
@@ -25,13 +24,13 @@ const LeagueDetail: React.FC = () => {
   }, [countryName, leagueName]);
 
   return (
-    <div className="w-full bg-[#f3f4f6] flex-1">
-      <div className="bg-[#1a1c1e] text-white py-4 border-b border-gray-800">
+    <div className="w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300">
+      <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400">
-            <Link to="/" className="hover:text-green-500">Home</Link>
+            <Link to="/" className="hover:text-green-500 transition-colors">Home</Link>
             <span>»</span>
-            <Link to={`/country/${countryName}`} className="hover:text-green-500">{countryName}</Link>
+            <Link to={`/country/${countryName}`} className="hover:text-green-500 transition-colors">{countryName}</Link>
             <span>»</span>
             <span className="text-white">{leagueName}</span>
           </div>
@@ -40,19 +39,19 @@ const LeagueDetail: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1 bg-white rounded-2xl shadow-sm border p-8">
+          <div className="flex-1 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border dark:border-slate-800 p-8 transition-colors duration-300">
             <div className="flex items-center space-x-3 mb-10">
               {matches.length > 0 && <img src={matches[0].countryFlag} alt="" className="w-6 h-6 object-contain" />}
-              <h1 className="text-2xl font-black text-gray-900">{leagueName} Fixtures</h1>
+              <h1 className="text-2xl font-black text-slate-900 dark:text-white">{leagueName} Fixtures</h1>
             </div>
 
             {loading ? (
               <div className="space-y-4">
-                {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-50 rounded-xl animate-pulse"></div>)}
+                {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-50 dark:bg-slate-800/50 rounded-xl animate-pulse"></div>)}
               </div>
             ) : matches.length > 0 ? (
               <div>
-                <div className="grid grid-cols-[80px_1fr_60px_60px_60px_80px] gap-4 px-4 mb-2 text-[10px] font-black uppercase text-gray-300">
+                <div className="grid grid-cols-[80px_1fr_60px_60px_60px_80px] gap-4 px-4 mb-2 text-[10px] font-black uppercase text-gray-300 dark:text-slate-600">
                   <span>Time</span>
                   <span>Game</span>
                   <span className="text-center">-</span>
@@ -70,7 +69,7 @@ const LeagueDetail: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-20">
-                <p className="text-gray-400 font-bold">No matches found for this league.</p>
+                <p className="text-gray-400 dark:text-gray-500 font-bold">No matches found for this league.</p>
               </div>
             )}
           </div>

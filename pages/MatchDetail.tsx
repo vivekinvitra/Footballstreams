@@ -5,10 +5,10 @@ import { matchService } from '../services/matchService';
 import { Match, MatchAnalysis, BettingOffer } from '../types';
 
 const Breadcrumbs: React.FC<{ match: Match }> = ({ match }) => (
-  <div className="bg-[#1a1c1e] text-white py-4 border-b border-gray-800">
+  <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-900">
     <div className="max-w-7xl mx-auto px-4">
       <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400">
-        <Link to="/" className="hover:text-green-500">Home</Link>
+        <Link to="/" className="hover:text-green-500 transition-colors">Home</Link>
         <span>»</span>
         <span className="hover:text-green-500 cursor-pointer">{match.country}</span>
         <span>»</span>
@@ -21,7 +21,7 @@ const Breadcrumbs: React.FC<{ match: Match }> = ({ match }) => (
 );
 
 const MatchHero: React.FC<{ match: Match }> = ({ match }) => (
-  <div className="bg-[#1a1c1e] text-white py-12 border-b border-gray-800 relative overflow-hidden">
+  <div className="bg-slate-900 dark:bg-black text-white py-12 border-b border-gray-800 dark:border-slate-900 relative overflow-hidden transition-colors duration-300">
     <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
     <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
       <h1 className="text-2xl sm:text-3xl font-black mb-12">
@@ -54,7 +54,7 @@ const MatchHero: React.FC<{ match: Match }> = ({ match }) => (
 
       <div className="flex flex-wrap justify-center gap-2 mt-16">
         {['Verdict', 'Stream', 'Prediction', 'Odds', 'Head-to-Head', 'Team Form', 'Match Info'].map((tab, i) => (
-          <button key={tab} className={`px-5 py-2 rounded-full text-xs font-bold transition-all ${i === 0 ? 'bg-green-500 text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>
+          <button key={tab} className={`px-5 py-2 rounded-full text-xs font-bold transition-all ${i === 0 ? 'bg-green-500 text-black shadow-lg shadow-green-500/20' : 'bg-gray-800 dark:bg-slate-800 text-white hover:bg-gray-700 dark:hover:bg-slate-700'}`}>
             {tab}
           </button>
         ))}
@@ -64,10 +64,10 @@ const MatchHero: React.FC<{ match: Match }> = ({ match }) => (
 );
 
 const VerdictCard: React.FC<{ analysis: MatchAnalysis }> = ({ analysis }) => (
-  <div className="bg-[#1a1c1e] text-white rounded-2xl overflow-hidden mb-8 shadow-xl">
+  <div className="bg-slate-900 dark:bg-slate-800/50 text-white rounded-2xl overflow-hidden mb-8 shadow-xl transition-colors duration-300">
     <div className="p-6 sm:p-8">
       <div className="flex items-center space-x-4 mb-6">
-        <img src={analysis.editor.avatar} alt="" className="w-14 h-14 rounded-full border-2 border-green-500" />
+        <img src={analysis.editor.avatar} alt="" className="w-14 h-14 rounded-full border-2 border-green-500 shadow-lg shadow-green-500/20" />
         <div>
           <h3 className="text-lg font-black">{analysis.editor.name}'s Verdict</h3>
           <p className="text-xs text-gray-400 font-bold uppercase">{analysis.editor.role}</p>
@@ -77,7 +77,7 @@ const VerdictCard: React.FC<{ analysis: MatchAnalysis }> = ({ analysis }) => (
         <p className="text-sm text-gray-300 leading-relaxed font-medium flex-1">
           {analysis.verdict}
         </p>
-        <button className="whitespace-nowrap bg-green-500 text-black px-8 py-3 rounded-xl font-black text-sm flex items-center gap-2 hover:bg-green-400 transition-colors">
+        <button className="whitespace-nowrap bg-green-500 text-black px-8 py-3 rounded-xl font-black text-sm flex items-center gap-2 hover:bg-green-400 transition-colors shadow-lg shadow-green-500/20">
           Place Bet 
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
         </button>
@@ -88,11 +88,11 @@ const VerdictCard: React.FC<{ analysis: MatchAnalysis }> = ({ analysis }) => (
 
 const PredictionTable: React.FC<{ match: Match }> = ({ match }) => (
   <div className="mb-12">
-    <h3 className="text-lg font-black mb-6">1X2 prediction for {match.homeTeam.name} vs {match.awayTeam.name} match</h3>
-    <div className="bg-white rounded-xl border overflow-hidden shadow-sm">
+    <h3 className="text-lg font-black mb-6 text-slate-900 dark:text-white">1X2 prediction for {match.homeTeam.name} vs {match.awayTeam.name} match</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-xl border dark:border-slate-800 overflow-hidden shadow-sm transition-colors duration-300">
       <table className="w-full text-xs font-bold">
         <thead>
-          <tr className="bg-gray-50 border-b text-gray-400">
+          <tr className="bg-gray-50 dark:bg-slate-800 text-gray-400 dark:text-gray-500 border-b dark:border-slate-800">
             <th className="py-3 px-4 text-left">Game</th>
             <th className="py-3 px-4 text-center">1</th>
             <th className="py-3 px-4 text-center">X</th>
@@ -100,43 +100,43 @@ const PredictionTable: React.FC<{ match: Match }> = ({ match }) => (
             <th className="py-3 px-4 text-center">Prediction</th>
           </tr>
         </thead>
-        <tbody className="divide-y">
+        <tbody className="divide-y dark:divide-slate-800">
           <tr>
             <td className="py-4 px-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2">
-                  <img src={match.homeTeam.logo} alt="" className="w-4 h-4" /> {match.homeTeam.name}
-                  <span className="text-gray-900 ml-auto">0</span>
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                  <img src={match.homeTeam.logo} alt="" className="w-4 h-4 object-contain" /> {match.homeTeam.name}
+                  <span className="text-slate-900 dark:text-white ml-auto">0</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <img src={match.awayTeam.logo} alt="" className="w-4 h-4" /> {match.awayTeam.name}
-                  <span className="text-gray-900 ml-auto">0</span>
+                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+                  <img src={match.awayTeam.logo} alt="" className="w-4 h-4 object-contain" /> {match.awayTeam.name}
+                  <span className="text-slate-900 dark:text-white ml-auto">0</span>
                 </div>
               </div>
             </td>
             <td className="p-2">
-              <div className="bg-gray-50 p-2 rounded text-center">
-                <div className="text-gray-400">3.89</div>
-                <div className="text-gray-900">26%</div>
+              <div className="bg-gray-50 dark:bg-slate-800/50 p-2 rounded text-center">
+                <div className="text-gray-400 dark:text-gray-500">3.89</div>
+                <div className="text-slate-900 dark:text-white">26%</div>
               </div>
             </td>
             <td className="p-2">
-              <div className="bg-gray-50 p-2 rounded text-center">
-                <div className="text-gray-400">3.75</div>
-                <div className="text-gray-900">27%</div>
+              <div className="bg-gray-50 dark:bg-slate-800/50 p-2 rounded text-center">
+                <div className="text-gray-400 dark:text-gray-500">3.75</div>
+                <div className="text-slate-900 dark:text-white">27%</div>
               </div>
             </td>
             <td className="p-2">
-              <div className="bg-green-100 p-2 rounded text-center border border-green-200">
-                <div className="text-green-700 flex items-center justify-center gap-1">
+              <div className="bg-green-100 dark:bg-green-950/30 p-2 rounded text-center border border-green-200 dark:border-green-900/50">
+                <div className="text-green-700 dark:text-green-400 flex items-center justify-center gap-1">
                   <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" /></svg>
                   1.95
                 </div>
-                <div className="text-green-800">51%</div>
+                <div className="text-green-800 dark:text-green-300">51%</div>
               </div>
             </td>
             <td className="p-2">
-              <div className="bg-[#1a1c1e] text-white p-2 rounded text-center">
+              <div className="bg-slate-900 dark:bg-slate-800 text-white p-2 rounded text-center">
                 <div>W2</div>
                 <div>1.95</div>
               </div>
@@ -149,16 +149,16 @@ const PredictionTable: React.FC<{ match: Match }> = ({ match }) => (
 );
 
 const BettingOfferCard: React.FC<{ offer: BettingOffer }> = ({ offer }) => (
-  <div className="border rounded-xl p-4 bg-white shadow-sm flex flex-col gap-3 group hover:border-green-500 transition-all">
+  <div className="border dark:border-slate-800 rounded-xl p-4 bg-white dark:bg-slate-900 shadow-sm flex flex-col gap-3 group hover:border-green-500 transition-all">
     <div className="flex items-center justify-between">
       <img src={offer.logo} alt={offer.bookmaker} className="h-6 object-contain" />
       <div className="flex flex-col items-end">
-        <span className="text-xs font-black text-gray-900">{offer.bonus}</span>
-        {offer.promoCode && <span className="text-[10px] text-gray-400 font-bold uppercase">Code: {offer.promoCode}</span>}
+        <span className="text-xs font-black text-slate-900 dark:text-white">{offer.bonus}</span>
+        {offer.promoCode && <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase">Code: {offer.promoCode}</span>}
       </div>
-      <button className="bg-green-500 text-black px-4 py-1.5 rounded-lg font-bold text-xs hover:bg-green-400">Claim</button>
+      <button className="bg-green-500 text-black px-4 py-1.5 rounded-lg font-bold text-xs hover:bg-green-400 transition-colors shadow-sm">Claim</button>
     </div>
-    <p className="text-[10px] text-gray-400 leading-tight">
+    <p className="text-[10px] text-gray-400 dark:text-gray-500 leading-tight">
       {offer.description}
     </p>
   </div>
@@ -176,7 +176,6 @@ const MatchDetail: React.FC = () => {
       if (id) {
         const found = await matchService.getMatchById(id);
         if (found) {
-          // Fix: Added type assertions to bridge JS data into TS types
           setMatch(found as Match);
           const analysisData = await matchService.getMatchAnalysis(found);
           setAnalysis(analysisData as MatchAnalysis);
@@ -188,20 +187,20 @@ const MatchDetail: React.FC = () => {
   }, [id]);
 
   if (loading) return (
-    <div className="flex-1 flex items-center justify-center py-20 bg-[#f3f4f6]">
+    <div className="flex-1 flex items-center justify-center py-20 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-500"></div>
     </div>
   );
   
   if (!match || !analysis) return (
-    <div className="flex-1 flex flex-col items-center justify-center py-20 bg-[#f3f4f6]">
-      <h2 className="text-2xl font-bold mb-4">Match Analysis Missing</h2>
-      <Link to="/" className="bg-green-500 text-black px-6 py-2 rounded-lg font-bold">Back to Fixtures</Link>
+    <div className="flex-1 flex flex-col items-center justify-center py-20 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
+      <h2 className="text-2xl font-bold mb-4 text-slate-900 dark:text-white">Match Analysis Missing</h2>
+      <Link to="/" className="bg-green-500 text-black px-6 py-2 rounded-lg font-bold hover:bg-green-400 transition-colors">Back to Fixtures</Link>
     </div>
   );
 
   return (
-    <div className="w-full flex-1 bg-[#f3f4f6]">
+    <div className="w-full flex-1 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
       <Breadcrumbs match={match} />
       <MatchHero match={match} />
 
@@ -211,32 +210,32 @@ const MatchDetail: React.FC = () => {
             <VerdictCard analysis={analysis} />
             <PredictionTable match={match} />
             
-            <div className="bg-white rounded-xl border p-8 mb-8 text-center">
-              <h3 className="text-lg font-black mb-4">{match.homeTeam.name} vs {match.awayTeam.name} Football Score</h3>
-              <div className="flex items-center justify-center gap-12 border-t pt-8">
+            <div className="bg-white dark:bg-slate-900 rounded-xl border dark:border-slate-800 p-8 mb-8 text-center transition-colors duration-300">
+              <h3 className="text-lg font-black mb-4 text-slate-900 dark:text-white">{match.homeTeam.name} vs {match.awayTeam.name} Football Score</h3>
+              <div className="flex items-center justify-center gap-12 border-t dark:border-slate-800 pt-8">
                 <div className="flex flex-col items-center gap-2">
-                  <img src={match.homeTeam.logo} alt="" className="w-8 h-8" />
-                  <span className="text-xs font-bold uppercase">{match.homeTeam.name}</span>
+                  <img src={match.homeTeam.logo} alt="" className="w-10 h-10 object-contain" />
+                  <span className="text-xs font-bold uppercase text-slate-700 dark:text-slate-300">{match.homeTeam.name}</span>
                 </div>
                 <div className="text-center">
-                   <div className="text-[10px] font-bold text-gray-400 uppercase mb-2">
+                   <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase mb-2">
                      {match.status === 'LIVE' as any ? 'In Progress' : 'Not started'}
                    </div>
-                   <div className="text-2xl font-black text-gray-900">
+                   <div className="text-2xl font-black text-slate-900 dark:text-white">
                      {match.status === 'LIVE' as any ? `${match.homeTeam.score} - ${match.awayTeam.score}` : 'VS'}
                    </div>
                 </div>
                 <div className="flex flex-col items-center gap-2">
-                  <img src={match.awayTeam.logo} alt="" className="w-8 h-8" />
-                  <span className="text-xs font-bold uppercase">{match.awayTeam.name}</span>
+                  <img src={match.awayTeam.logo} alt="" className="w-10 h-10 object-contain" />
+                  <span className="text-xs font-bold uppercase text-slate-700 dark:text-slate-300">{match.awayTeam.name}</span>
                 </div>
               </div>
             </div>
           </div>
 
           <aside className="w-full lg:w-80 space-y-8">
-            <div className="bg-white rounded-2xl border shadow-sm p-6">
-              <h3 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6 border-b pb-4">Related Videos</h3>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border dark:border-slate-800 shadow-sm p-6 transition-colors duration-300">
+              <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 dark:text-white mb-6 border-b dark:border-slate-800 pb-4">Related Videos</h3>
               <div className="space-y-6">
                 {analysis.relatedVideos.map(video => (
                   <div key={video.id} className="group cursor-pointer">
@@ -246,18 +245,18 @@ const MatchDetail: React.FC = () => {
                         <svg className="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                       </div>
                     </div>
-                    <h4 className="text-xs font-bold text-gray-800 line-clamp-2 leading-snug">{video.title}</h4>
+                    <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 line-clamp-2 leading-snug group-hover:text-green-500 transition-colors">{video.title}</h4>
                     <div className="flex justify-between items-center mt-1">
-                      <span className="text-[10px] text-gray-400 font-bold uppercase">{video.team}</span>
-                      <span className="text-[10px] text-gray-400">{video.date}</span>
+                      <span className="text-[10px] text-gray-400 dark:text-gray-500 font-bold uppercase">{video.team}</span>
+                      <span className="text-[10px] text-gray-400 dark:text-gray-500">{video.date}</span>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl border shadow-sm p-6">
-              <h3 className="text-sm font-black uppercase tracking-widest text-gray-900 mb-6 border-b pb-4">Offers</h3>
+            <div className="bg-white dark:bg-slate-900 rounded-2xl border dark:border-slate-800 shadow-sm p-6 transition-colors duration-300">
+              <h3 className="text-sm font-black uppercase tracking-widest text-slate-900 dark:text-white mb-6 border-b dark:border-slate-800 pb-4">Offers</h3>
               <div className="space-y-4">
                 {analysis.bettingOffers.map((offer, idx) => (
                   <BettingOfferCard key={idx} offer={offer} />

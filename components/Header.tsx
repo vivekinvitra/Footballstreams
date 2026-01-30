@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { matchService } from '../services/matchService';
 import { categoryService } from '../services/categoryService';
+import { useTheme } from '../contexts/ThemeContext';
 
 const Header: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useTheme();
 
   // Data from services
   const [superCategories, setSuperCategories] = useState<any[]>([]);
@@ -20,7 +22,6 @@ const Header: React.FC = () => {
   const [liveMatchCount, setLiveMatchCount] = useState(0);
 
   useEffect(() => {
-    // Category service calls
     setSuperCategories(categoryService.getSuperCategories());
     setPopularCategories(categoryService.getPopularCategories());
     setAllOtherCategories(categoryService.getAllCategories());
@@ -28,8 +29,6 @@ const Header: React.FC = () => {
     setNewsCategories(categoryService.getNewsCategories());
     setBestSportsOffers(categoryService.getMegaMenuOffers());
     setBettingSitesLink(categoryService.getBettingSitesLink());
-    
-    // Match service calls
     matchService.getLiveMatches().then(matches => setLiveMatchCount(matches.length));
   }, []);
 
@@ -53,7 +52,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="bg-[#1a1c1e] text-white sticky top-0 z-50 shadow-md">
+    <header className="bg-slate-900 dark:bg-slate-950 text-white sticky top-0 z-50 shadow-md transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-8">
           <Link to="/" className="flex items-center space-x-2" onClick={() => setActiveMenu(null)}>
@@ -91,7 +90,23 @@ const Header: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <button className="p-2 hover:bg-gray-800 rounded-full transition-colors">
+          <button 
+            onClick={toggleTheme}
+            className="p-2 hover:bg-slate-800 dark:hover:bg-slate-800 rounded-full transition-colors text-gray-300 hover:text-white"
+            aria-label="Toggle Theme"
+          >
+            {theme === 'light' ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            )}
+          </button>
+          
+          <button className="p-2 hover:bg-slate-800 rounded-full transition-colors text-gray-300 hover:text-white">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -106,7 +121,7 @@ const Header: React.FC = () => {
       </div>
 
       {activeMenu && (
-        <div ref={menuRef} className="absolute top-16 left-0 w-full bg-white text-gray-900 border-b shadow-2xl animate-in slide-in-from-top-2 duration-200">
+        <div ref={menuRef} className="absolute top-16 left-0 w-full bg-white dark:bg-slate-900 text-slate-900 dark:text-white border-b dark:border-slate-800 shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <div className="max-w-7xl mx-auto px-4 py-10">
             <div className="flex gap-12">
               <div className="flex-1">
@@ -116,12 +131,12 @@ const Header: React.FC = () => {
                       <div key={cat.categoryName} className="space-y-4">
                         <Link 
                           to={`/country/${cat.categoryName}`} 
-                          className="block text-sm font-black text-gray-900 hover:text-green-600 transition-colors"
+                          className="block text-sm font-black text-slate-900 dark:text-white hover:text-green-600 transition-colors"
                           onClick={() => setActiveMenu(null)}
                         >
                           {cat.categoryName}
                         </Link>
-                        <div className="h-[2px] bg-gray-100 w-full"></div>
+                        <div className="h-[2px] bg-gray-100 dark:bg-slate-800 w-full"></div>
                         <ul className="space-y-3">
                           {cat.subCategories.map((sub: any) => (
                             <li key={sub.name}>
@@ -136,7 +151,7 @@ const Header: React.FC = () => {
                                   className="w-4 h-4 object-contain group-hover:scale-110 transition-transform" 
                                   onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'}
                                 />
-                                <span className="text-[12px] font-bold text-gray-600 group-hover:text-black transition-colors">
+                                <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
                                   {sub.name}
                                 </span>
                               </Link>
@@ -148,13 +163,13 @@ const Header: React.FC = () => {
                   </div>
                 ) : activeMenu === 'Category' ? (
                   <div className="flex flex-col h-full">
-                    <h3 className="text-sm font-black text-gray-900 mb-6 uppercase tracking-wider">All Categories</h3>
+                    <h3 className="text-sm font-black text-slate-900 dark:text-white mb-6 uppercase tracking-wider">All Categories</h3>
                     <div className="grid grid-cols-2 gap-y-3 gap-x-12 custom-scrollbar overflow-y-auto max-h-[400px] pr-4">
                       {allOtherCategories.map((country) => (
                         <Link 
                           key={country}
                           to={`/country/${country}`}
-                          className="text-[13px] font-bold text-gray-600 hover:text-green-600 transition-colors"
+                          className="text-[13px] font-bold text-gray-600 dark:text-gray-400 hover:text-green-600 transition-colors"
                           onClick={() => setActiveMenu(null)}
                         >
                           {country}
@@ -164,7 +179,7 @@ const Header: React.FC = () => {
                   </div>
                 ) : activeMenu === 'International' ? (
                   <div>
-                    <h3 className="text-sm font-black text-gray-900 mb-6 uppercase tracking-wider">International</h3>
+                    <h3 className="text-sm font-black text-slate-900 dark:text-white mb-6 uppercase tracking-wider">International</h3>
                     <div className="grid grid-cols-2 gap-y-4 gap-x-12">
                       {internationalLeagues.map((league: any) => (
                         <Link 
@@ -174,14 +189,14 @@ const Header: React.FC = () => {
                           onClick={() => setActiveMenu(null)}
                         >
                           <img src={league.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'} />
-                          <span className="text-[12px] font-bold text-gray-600 group-hover:text-black transition-colors">{league.name}</span>
+                          <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">{league.name}</span>
                         </Link>
                       ))}
                     </div>
                   </div>
                 ) : activeMenu === 'News' ? (
                   <div>
-                    <h3 className="text-sm font-black text-gray-900 mb-6 uppercase tracking-wider">News</h3>
+                    <h3 className="text-sm font-black text-slate-900 dark:text-white mb-6 uppercase tracking-wider">News</h3>
                     <div className="grid grid-cols-2 gap-y-4 gap-x-12">
                       {newsCategories.map((cat: any) => (
                         <Link 
@@ -191,7 +206,7 @@ const Header: React.FC = () => {
                           onClick={() => setActiveMenu(null)}
                         >
                           <img src={cat.icon} alt="" className="w-5 h-5 object-contain" onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'} />
-                          <span className="text-[12px] font-bold text-gray-600 group-hover:text-black transition-colors">{cat.name}</span>
+                          <span className="text-[12px] font-bold text-gray-600 dark:text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">{cat.name}</span>
                         </Link>
                       ))}
                     </div>
@@ -199,15 +214,15 @@ const Header: React.FC = () => {
                 ) : null}
               </div>
 
-              <div className="w-80 border-l pl-12">
-                <h3 className="text-sm font-black text-gray-900 mb-6 uppercase tracking-wider">Best Sports:</h3>
+              <div className="w-80 border-l dark:border-slate-800 pl-12">
+                <h3 className="text-sm font-black text-slate-900 dark:text-white mb-6 uppercase tracking-wider">Best Sports:</h3>
                 <div className="space-y-6">
                   {bestSportsOffers.map((offer: any) => (
-                    <div key={offer.name} className="bg-gray-50 rounded-xl p-4 border border-transparent hover:border-green-200 transition-all cursor-pointer group">
+                    <div key={offer.name} className="bg-gray-50 dark:bg-slate-800/50 rounded-xl p-4 border border-transparent hover:border-green-200 dark:hover:border-green-900 transition-all cursor-pointer group">
                       <div className="flex items-center justify-between mb-2">
                         <div className="flex items-center space-x-3">
                           <img src={offer.logo} alt="" className="h-6 object-contain" />
-                          <span className="text-sm font-black text-gray-900">{offer.name}</span>
+                          <span className="text-sm font-black text-slate-900 dark:text-white">{offer.name}</span>
                         </div>
                         <svg className="w-4 h-4 text-gray-400 group-hover:text-green-500 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />

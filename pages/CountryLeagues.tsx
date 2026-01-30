@@ -16,7 +16,6 @@ const CountryLeagues: React.FC = () => {
       setLoading(true);
       if (countryName) {
         const data = await matchService.getMatchesByCountry(countryName);
-        // Fix: Added type assertion to bridge JS data to Match[]
         setMatches(data as Match[]);
       }
       setLoading(false);
@@ -36,11 +35,11 @@ const CountryLeagues: React.FC = () => {
   const availableLeagues = useMemo(() => Object.keys(groupedByLeague), [groupedByLeague]);
 
   return (
-    <div className="w-full bg-[#f3f4f6] flex-1">
-      <div className="bg-[#1a1c1e] text-white py-4 border-b border-gray-800">
+    <div className="w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300">
+      <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400">
-            <Link to="/" className="hover:text-green-500">Home</Link>
+            <Link to="/" className="hover:text-green-500 transition-colors">Home</Link>
             <span>»</span>
             <span className="text-white">{countryName}</span>
           </div>
@@ -49,11 +48,11 @@ const CountryLeagues: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          <div className="flex-1 bg-white rounded-2xl shadow-sm border p-8">
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-2xl font-black text-gray-900">{countryName} Leagues</h1>
+          <div className="flex-1 bg-white dark:bg-slate-900 rounded-2xl shadow-sm border dark:border-slate-800 p-8 transition-colors duration-300">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+              <h1 className="text-2xl font-black text-slate-900 dark:text-white">{countryName} Leagues</h1>
               <div className="relative">
-                <select className="appearance-none bg-white border rounded-xl px-4 py-2 text-xs font-bold pr-10 hover:border-gray-400 cursor-pointer shadow-sm min-w-[180px]">
+                <select className="appearance-none bg-white dark:bg-slate-800 border dark:border-slate-700 rounded-xl px-4 py-2 text-xs font-bold pr-10 hover:border-gray-400 dark:hover:border-slate-600 cursor-pointer shadow-sm min-w-[180px] text-slate-900 dark:text-white">
                   <option>Select League</option>
                   {availableLeagues.map(l => <option key={l} value={l}>{l}</option>)}
                 </select>
@@ -65,7 +64,7 @@ const CountryLeagues: React.FC = () => {
 
             {loading ? (
               <div className="space-y-4">
-                {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-50 rounded-xl animate-pulse"></div>)}
+                {[1, 2, 3].map(i => <div key={i} className="h-24 bg-gray-50 dark:bg-slate-800/50 rounded-xl animate-pulse"></div>)}
               </div>
             ) : availableLeagues.length > 0 ? (
               <div className="space-y-12">
@@ -73,10 +72,10 @@ const CountryLeagues: React.FC = () => {
                   <div key={leagueName}>
                     <div className="flex items-center space-x-3 mb-6">
                       <img src={leagueMatches[0].countryFlag} alt="" className="w-5 h-5 object-contain" />
-                      <h2 className="text-sm font-black text-gray-900 uppercase tracking-tight">{leagueName}</h2>
+                      <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-tight">{leagueName}</h2>
                     </div>
 
-                    <div className="grid grid-cols-[80px_1fr_60px_60px_60px_80px] gap-4 px-4 mb-2 text-[10px] font-black uppercase text-gray-300">
+                    <div className="grid grid-cols-[80px_1fr_60px_60px_60px_80px] gap-4 px-4 mb-2 text-[10px] font-black uppercase text-gray-300 dark:text-slate-600">
                       <span>Time</span>
                       <span>Game</span>
                       <span className="text-center">-</span>
@@ -96,7 +95,7 @@ const CountryLeagues: React.FC = () => {
               </div>
             ) : (
               <div className="text-center py-20">
-                <p className="text-gray-400 font-bold">No matches found for this country.</p>
+                <p className="text-gray-400 dark:text-gray-500 font-bold">No matches found for this country.</p>
               </div>
             )}
           </div>

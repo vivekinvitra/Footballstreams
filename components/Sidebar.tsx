@@ -6,11 +6,11 @@ const Sidebar: React.FC = () => {
   const popularLeagues = leagueService.getPopularLeagues();
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border p-6 sticky top-20">
-      <h3 className="font-black text-lg mb-6 text-gray-900">Popular</h3>
+    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border dark:border-slate-800 p-6 sticky top-20 transition-colors duration-300">
+      <h3 className="font-black text-lg mb-6 text-slate-900 dark:text-white">Popular</h3>
       <div className="space-y-4">
         {popularLeagues.map((league: any, idx) => (
-          <div key={idx} className="flex items-center justify-between group cursor-pointer hover:bg-gray-50 p-2 rounded-xl transition-all">
+          <div key={idx} className="flex items-center justify-between group cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 p-2 rounded-xl transition-all">
             <div className="flex items-center space-x-3">
               <img 
                 src={league.logo} 
@@ -18,10 +18,10 @@ const Sidebar: React.FC = () => {
                 className="w-5 h-5 object-contain"
                 onError={(e: any) => e.target.src = 'https://www.footballstreams.com/assets/img/leagues/default.png'}
               />
-              <span className="text-xs font-bold text-gray-700 group-hover:text-black">{league.name}</span>
+              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:text-black dark:group-hover:text-white">{league.name}</span>
             </div>
             <div className="flex items-center">
-              <span className={`text-[10px] font-bold px-2 py-1 rounded min-w-[45px] text-center ${league.status === 'Live' ? 'bg-green-500 text-black animate-pulse' : 'bg-white text-gray-400 border'}`}>
+              <span className={`text-[10px] font-bold px-2 py-1 rounded min-w-[45px] text-center ${league.status === 'Live' ? 'bg-green-500 text-black animate-pulse' : 'bg-white dark:bg-slate-800 text-gray-400 dark:text-gray-500 border dark:border-slate-700'}`}>
                 {league.time || league.status}
               </span>
             </div>
