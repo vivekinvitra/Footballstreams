@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { matchService } from '../services/matchService';
+import { leagueService } from '../services/leagueService';
 
 const Sidebar: React.FC = () => {
-  const popularLeagues = matchService.getPopularLeagues();
+  const popularLeagues = leagueService.getPopularLeagues();
 
   return (
     <div className="bg-white rounded-2xl shadow-sm border p-6 sticky top-20">

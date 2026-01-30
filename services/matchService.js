@@ -1,11 +1,6 @@
 
 import * as dataStore from './dataStore';
 
-/**
- * MatchService
- * Acts as the orchestration layer for the application's data needs.
- * Manages caching, filtering, and data transformation.
- */
 class MatchService {
   async getAllMatches() {
     try {
@@ -40,7 +35,7 @@ class MatchService {
     );
   }
 
-  // Backwards compatibility aliases
+  // Aliases for better readability
   async getMatchesByCountry(countryName) { return this.getMatchesByCategory(countryName); }
   async getMatchesByLeague(country, league) { return this.getMatchesBySubCategory(country, league); }
 
@@ -54,66 +49,10 @@ class MatchService {
     return dataStore.getMatchAnalysis(match);
   }
 
-  getSupercatItems() {
-    return dataStore.getSupercatItems();
-  }
-
-  getPopularLeagues() {
-    return this.getSupercatItems();
-  }
-
   getOffers() {
     return dataStore.getOffers();
   }
 
-  // --- New Header/Navigation methods ---
-  getSuperCategories() {
-    return dataStore.getSuperCategories();
-  }
-
-  getPopularCategories() {
-    return dataStore.getPopularCategories();
-  }
-
-  getAllCategories() {
-    // Get all countries and filter out those that are in Popular
-    const popularNames = this.getPopularCategories().map(c => c.categoryName.toLowerCase());
-    const allCountries = dataStore.getAllCountries();
-    return allCountries.filter(country => !popularNames.includes(country.toLowerCase()));
-  }
-
-  getNavigationCategories() { return this.getPopularCategories(); }
-
-  getInternationalLeagues() {
-    return dataStore.getInternationalLeagues();
-  }
-
-  getNewsCategories() {
-    return dataStore.getNewsCategories();
-  }
-
-  getMegaMenuOffers() {
-    return dataStore.getMegaMenuOffers();
-  }
-
-  getBettingSitesLink() {
-    return dataStore.getBettingSitesConfig();
-  }
-
-  getFooterQuickLinks() {
-    return [
-      { name: 'Premier League', path: '/league/England/English Premier League' },
-      { name: 'La Liga', path: '/league/Spain/Spanish La Liga' },
-      { name: 'Bundesliga', path: '/league/Germany/Bundesliga' },
-      { name: 'Champions League', path: '/league/International/UEFA Champions League' }
-    ];
-  }
-
-  getSupportLinks() {
-    return dataStore.getSupportLinks();
-  }
-
-  // --- Business Logic Helpers ---
   calculateOddsPercentages(odds) {
     if (!odds) return { p1: 0, pX: 0, p2: 0 };
     const total = (1 / odds.home) + (1 / odds.draw) + (1 / odds.away);

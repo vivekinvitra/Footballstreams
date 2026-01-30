@@ -1,15 +1,16 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { matchService } from '../services/matchService';
+import { leagueService } from '../services/leagueService';
+import { categoryService } from '../services/categoryService';
 
 const Footer: React.FC = () => {
   const [quickLinks, setQuickLinks] = useState<any[]>([]);
   const [supportLinks, setSupportLinks] = useState<any[]>([]);
 
   useEffect(() => {
-    setQuickLinks(matchService.getFooterQuickLinks());
-    setSupportLinks(matchService.getSupportLinks());
+    setQuickLinks(leagueService.getFooterQuickLinks());
+    setSupportLinks(categoryService.getSupportLinks());
   }, []);
 
   return (

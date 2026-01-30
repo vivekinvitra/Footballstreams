@@ -2,13 +2,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { matchService } from '../services/matchService';
+import { categoryService } from '../services/categoryService';
 
 const Header: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  // Data from service
+  // Data from services
   const [superCategories, setSuperCategories] = useState<any[]>([]);
   const [popularCategories, setPopularCategories] = useState<any[]>([]);
   const [allOtherCategories, setAllOtherCategories] = useState<string[]>([]);
@@ -19,16 +20,16 @@ const Header: React.FC = () => {
   const [liveMatchCount, setLiveMatchCount] = useState(0);
 
   useEffect(() => {
-    // Populate header data from service
-    setSuperCategories(matchService.getSuperCategories());
-    setPopularCategories(matchService.getPopularCategories());
-    setAllOtherCategories(matchService.getAllCategories());
-    setInternationalLeagues(matchService.getInternationalLeagues());
-    setNewsCategories(matchService.getNewsCategories());
-    setBestSportsOffers(matchService.getMegaMenuOffers());
-    setBettingSitesLink(matchService.getBettingSitesLink());
+    // Category service calls
+    setSuperCategories(categoryService.getSuperCategories());
+    setPopularCategories(categoryService.getPopularCategories());
+    setAllOtherCategories(categoryService.getAllCategories());
+    setInternationalLeagues(categoryService.getInternationalLeagues());
+    setNewsCategories(categoryService.getNewsCategories());
+    setBestSportsOffers(categoryService.getMegaMenuOffers());
+    setBettingSitesLink(categoryService.getBettingSitesLink());
     
-    // Fetch live count
+    // Match service calls
     matchService.getLiveMatches().then(matches => setLiveMatchCount(matches.length));
   }, []);
 
@@ -104,13 +105,10 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mega Menu Overlay */}
       {activeMenu && (
         <div ref={menuRef} className="absolute top-16 left-0 w-full bg-white text-gray-900 border-b shadow-2xl animate-in slide-in-from-top-2 duration-200">
           <div className="max-w-7xl mx-auto px-4 py-10">
             <div className="flex gap-12">
-              
-              {/* Main List Section */}
               <div className="flex-1">
                 {activeMenu === 'Supercat' ? (
                   <div className="grid grid-cols-5 gap-8">
@@ -201,7 +199,6 @@ const Header: React.FC = () => {
                 ) : null}
               </div>
 
-              {/* Sidebar Sidebar */}
               <div className="w-80 border-l pl-12">
                 <h3 className="text-sm font-black text-gray-900 mb-6 uppercase tracking-wider">Best Sports:</h3>
                 <div className="space-y-6">
