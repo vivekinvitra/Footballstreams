@@ -94,10 +94,17 @@ export const getMegaMenuOffers = () => [
 ];
 
 export const getSupportLinks = () => [
-  { name: 'Privacy Policy', path: '#' },
-  { name: 'Terms of Use', path: '#' },
-  { name: 'Contact Us', path: '#' },
-  { name: 'FAQ', path: '#' },
+  { name: 'Privacy Policy', path: '/privacy-policy' },
+  { name: 'Term', path: '/terms-of-use' },
+  { name: 'Contact US', path: '/contact-us' },
+  { name: 'FAQ', path: '/faq' },
+];
+
+export const getFooterQuickLinks = () => [
+  { name: 'Premier League', path: '/league/England/English Premier League' },
+  { name: 'La Liga', path: '/league/Spain/Spanish La Liga' },
+  { name: 'Bundesliga', path: '/league/Germany/Bundesliga' },
+  { name: 'Champions League', path: '/league/International/UEFA Champions League' }
 ];
 
 /**

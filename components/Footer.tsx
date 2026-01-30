@@ -1,16 +1,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { leagueService } from '../services/leagueService';
-import { categoryService } from '../services/categoryService';
+import { footerService } from '../services/footerService';
 
 const Footer: React.FC = () => {
   const [quickLinks, setQuickLinks] = useState<any[]>([]);
   const [supportLinks, setSupportLinks] = useState<any[]>([]);
 
   useEffect(() => {
-    setQuickLinks(leagueService.getFooterQuickLinks());
-    setSupportLinks(categoryService.getSupportLinks());
+    setQuickLinks(footerService.getQuickLinks());
+    setSupportLinks(footerService.getSupportLinks());
   }, []);
 
   return (
@@ -43,7 +42,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm">
               {supportLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a href={link.path} className="hover:text-green-500 transition-colors">{link.name}</a>
+                  <Link to={link.path} className="hover:text-green-500 transition-colors">{link.name}</Link>
                 </li>
               ))}
             </ul>

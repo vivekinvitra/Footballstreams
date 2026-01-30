@@ -31,10 +31,6 @@ class CategoryService {
   getBettingSitesLink() {
     return dataStore.getBettingSitesConfig();
   }
-
-  getSupportLinks() {
-    return dataStore.getSupportLinks();
-  }
 }
 
 export const categoryService = new CategoryService();

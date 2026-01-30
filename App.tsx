@@ -8,6 +8,7 @@ import MatchDetail from './pages/MatchDetail';
 import CountryLeagues from './pages/CountryLeagues';
 import LeagueDetail from './pages/LeagueDetail';
 import Live from './pages/Live';
+import FooterDetails from './pages/FooterDetails';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 const App: React.FC = () => {
@@ -24,6 +25,10 @@ const App: React.FC = () => {
               <Route path="/country/:countryName" element={<CountryLeagues />} />
               <Route path="/league/:countryName/:leagueName" element={<LeagueDetail />} />
               <Route path="/live" element={<Live />} />
+              <Route path="/privacy-policy" element={<FooterDetails />} />
+              <Route path="/terms-of-use" element={<FooterDetails />} />
+              <Route path="/contact-us" element={<FooterDetails />} />
+              <Route path="/faq" element={<FooterDetails />} />
             </Routes>
           </main>
 
