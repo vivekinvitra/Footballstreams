@@ -5,13 +5,16 @@ import { matchService } from '../services/matchService';
 import { Match } from '../types';
 import MatchCard from '../components/MatchCard';
 import OffersSidebar from '../components/OffersSidebar';
+import { useSSRData } from '../src/contexts/SSRDataContext';
 
 const LeagueDetail: React.FC = () => {
+  const ssr = useSSRData();
   const { countryName, leagueName } = useParams<{ countryName: string; leagueName: string }>();
-  const [matches, setMatches] = useState<Match[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [matches, setMatches] = useState<Match[]>(ssr?.page === 'league' && ssr.country === countryName && ssr.leagueName === leagueName ? (ssr.matches || []) : []);
+  const [loading, setLoading] = useState<boolean>(ssr && ssr.page === 'league' ? false : true);
 
   useEffect(() => {
+    if (ssr && ssr.page === 'league' && ssr.country === countryName && ssr.leagueName === leagueName) return;
     const fetchData = async () => {
       setLoading(true);
       if (countryName && leagueName) {
@@ -21,7 +24,7 @@ const LeagueDetail: React.FC = () => {
       setLoading(false);
     };
     fetchData();
-  }, [countryName, leagueName]);
+  }, [countryName, leagueName, ssr]);
 
   return (
     <div className="w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300">

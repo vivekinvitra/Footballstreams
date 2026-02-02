@@ -4,12 +4,15 @@ import { matchService } from '../services/matchService';
 import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
+import { useSSRData } from '../src/contexts/SSRDataContext';
 
 const Live: React.FC = () => {
-  const [matches, setMatches] = useState<Match[]>([]);
-  const [loading, setLoading] = useState(true);
+  const ssr = useSSRData();
+  const [matches, setMatches] = useState<Match[]>(ssr?.matches ?? []);
+  const [loading, setLoading] = useState<boolean>(ssr ? false : true);
 
   useEffect(() => {
+    if (ssr && ssr.page === 'live') return;
     const fetchData = async () => {
       setLoading(true);
       const data = await matchService.getLiveMatches();
@@ -17,7 +20,7 @@ const Live: React.FC = () => {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, [ssr]);
 
   // Use explicit type casting for groupedMatches to resolve 'unknown' property errors in the template
   const groupedMatches = useMemo(() => matchService.groupMatches(matches) as Record<string, GroupedMatch>, [matches]);

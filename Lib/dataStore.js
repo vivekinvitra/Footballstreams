@@ -133,8 +133,8 @@ const generateMockMatches = () => {
     // World / Europa League
     {
       id: 'europa-1',
-      homeTeam: { name: 'Genk', logo: 'https://img.vscore.com/logo/team/krc-genk.png', score: 2 },
-      awayTeam: { name: 'Malmoe FF', logo: 'https://img.vscore.com/logo/team/malmo.png', score: 1 },
+      homeTeam: { name: 'Genk', logo: 'assets/logo/team/krc-genk.png', score: 2 },
+      awayTeam: { name: 'Malmoe FF', logo: 'assets/logo/team/malmo.png', score: 1 },
       time: '01:30',
       date: todayStr,
       league: 'Europa League',
@@ -148,8 +148,8 @@ const generateMockMatches = () => {
     // England / Premier League
     {
       id: 'epl-1',
-      homeTeam: { name: 'Manchester City', logo: 'https://img.vscore.com/logo/team/manchester-city.png', score: 3 },
-      awayTeam: { name: 'Arsenal', logo: 'https://img.vscore.com/logo/team/arsenal.png', score: 2 },
+      homeTeam: { name: 'Manchester City', logo: 'assets/logo/team/manchester-city.png', score: 3 },
+      awayTeam: { name: 'Arsenal', logo: 'assets/logo/team/arsenal.png', score: 2 },
       time: '20:00',
       date: todayStr,
       league: 'English Premier League',
@@ -162,8 +162,8 @@ const generateMockMatches = () => {
     },
     {
       id: 'epl-2',
-      homeTeam: { name: 'Liverpool', logo: 'https://img.vscore.com/logo/team/liverpool.png', score: 0 },
-      awayTeam: { name: 'Chelsea', logo: 'https://img.vscore.com/logo/team/chelsea.png', score: 0 },
+      homeTeam: { name: 'Liverpool', logo: 'assets/logo/team/liverpool.png', score: 0 },
+      awayTeam: { name: 'Chelsea', logo: 'assets/logo/team/chelsea.png', score: 0 },
       time: '17:30',
       date: todayStr,
       league: 'English Premier League',
@@ -177,8 +177,8 @@ const generateMockMatches = () => {
     // Spain / La Liga
     {
       id: 'laliga-1',
-      homeTeam: { name: 'Real Madrid', logo: 'https://img.vscore.com/logo/team/real-madrid.png', score: 4 },
-      awayTeam: { name: 'Barcelona', logo: 'https://img.vscore.com/logo/team/barcelona.png', score: 1 },
+      homeTeam: { name: 'Real Madrid', logo: 'assets/logo/team/real-madrid.png', score: 4 },
+      awayTeam: { name: 'Barcelona', logo: 'assets/logo/team/barcelona.png', score: 1 },
       time: '21:00',
       date: todayStr,
       league: 'Spanish La Liga',
@@ -191,8 +191,8 @@ const generateMockMatches = () => {
     },
     {
       id: 'laliga-2',
-      homeTeam: { name: 'Atletico Madrid', logo: 'https://img.vscore.com/logo/team/atletico-madrid.png', score: 1 },
-      awayTeam: { name: 'Sevilla', logo: 'https://img.vscore.com/logo/team/sevilla.png', score: 1 },
+      homeTeam: { name: 'Atletico Madrid', logo: 'assets/logo/team/atletico-madrid.png', score: 1 },
+      awayTeam: { name: 'Sevilla', logo: 'assets/logo/team/sevilla.png', score: 1 },
       time: '19:00',
       date: todayStr,
       league: 'Spanish La Liga',
@@ -206,8 +206,8 @@ const generateMockMatches = () => {
     // Germany / Bundesliga
     {
       id: 'bundesliga-1',
-      homeTeam: { name: 'Bayern Munich', logo: 'https://img.vscore.com/logo/team/bayern-munchen.png', score: 2 },
-      awayTeam: { name: 'Bayer Leverkusen', logo: 'https://img.vscore.com/logo/team/bayer-leverkusen.png', score: 2 },
+      homeTeam: { name: 'Bayern Munich', logo: 'assets/logo/team/bayern-munchen.png', score: 2 },
+      awayTeam: { name: 'Bayer Leverkusen', logo: 'assets/logo/team/bayer-leverkusen.png', score: 2 },
       time: '15:30',
       date: todayStr,
       league: 'Bundesliga',
@@ -220,8 +220,8 @@ const generateMockMatches = () => {
     },
     {
       id: 'bundesliga-2',
-      homeTeam: { name: 'Dortmund', logo: 'https://img.vscore.com/logo/team/borussia-dortmund.png', score: 3 },
-      awayTeam: { name: 'RB Leipzig', logo: 'https://img.vscore.com/logo/team/rb-leipzig.png', score: 1 },
+      homeTeam: { name: 'Dortmund', logo: 'assets/logo/team/borussia-dortmund.png', score: 3 },
+      awayTeam: { name: 'RB Leipzig', logo: 'assets/logo/team/rb-leipzig.png', score: 1 },
       time: '18:30',
       date: todayStr,
       league: 'Bundesliga',
@@ -235,8 +235,8 @@ const generateMockMatches = () => {
     // Italy / Serie A
     {
       id: 'seriea-1',
-      homeTeam: { name: 'Inter Milan', logo: 'https://img.vscore.com/logo/team/inter-milan.png', score: 1 },
-      awayTeam: { name: 'Juventus', logo: 'https://img.vscore.com/logo/team/juventus.png', score: 0 },
+      homeTeam: { name: 'Inter Milan', logo: 'assets/logo/team/inter-milan.png', score: 1 },
+      awayTeam: { name: 'Juventus', logo: 'assets/logo/team/juventus.png', score: 0 },
       time: '20:45',
       date: todayStr,
       league: 'Italian Serie A',
@@ -250,8 +250,8 @@ const generateMockMatches = () => {
     // France / Ligue 1
     {
       id: 'ligue1-1',
-      homeTeam: { name: 'PSG', logo: 'https://img.vscore.com/logo/team/paris-saint-germain.png', score: 5 },
-      awayTeam: { name: 'Monaco', logo: 'https://img.vscore.com/logo/team/monaco.png', score: 2 },
+      homeTeam: { name: 'PSG', logo: 'assets/logo/team/paris-saint-germain.png', score: 5 },
+      awayTeam: { name: 'Monaco', logo: 'assets/logo/team/monaco.png', score: 2 },
       time: '21:00',
       date: todayStr,
       league: 'French Ligue 1',
@@ -293,16 +293,16 @@ export const getMatchAnalysis = (match) => ({
  * Search-specific mock data
  */
 export const getSearchData = () => [
-  { id: 's1', type: 'Team', name: 'Real Madrid', country: 'Spain', followers: '6.6M', logo: 'https://img.vscore.com/logo/team/real-madrid.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
-  { id: 's2', type: 'Team', name: 'Barcelona', country: 'Spain', followers: '6.3M', logo: 'https://img.vscore.com/logo/team/barcelona.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
-  { id: 's3', type: 'Team', name: 'Manchester City', country: 'England', followers: '3.6M', logo: 'https://img.vscore.com/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
-  { id: 's4', type: 'Team', name: 'Liverpool', country: 'England', followers: '3.5M', logo: 'https://img.vscore.com/logo/team/liverpool.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
-  { id: 's5', type: 'Team', name: 'Manchester United', country: 'England', followers: '3.1M', logo: 'https://img.vscore.com/logo/team/manchester-united.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
-  { id: 's6', type: 'Team', name: 'Arsenal', country: 'England', followers: '3M', logo: 'https://img.vscore.com/logo/team/arsenal.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's1', type: 'Team', name: 'Real Madrid', country: 'Spain', followers: '6.6M', logo: 'assets/logo/team/real-madrid.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
+  { id: 's2', type: 'Team', name: 'Barcelona', country: 'Spain', followers: '6.3M', logo: 'assets/logo/team/barcelona.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Football' },
+  { id: 's3', type: 'Team', name: 'Manchester City', country: 'England', followers: '3.6M', logo: 'assets/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's4', type: 'Team', name: 'Liverpool', country: 'England', followers: '3.5M', logo: 'assets/logo/team/liverpool.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's5', type: 'Team', name: 'Manchester United', country: 'England', followers: '3.1M', logo: 'assets/logo/team/manchester-united.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
+  { id: 's6', type: 'Team', name: 'Arsenal', country: 'England', followers: '3M', logo: 'assets/logo/team/arsenal.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Football' },
   { id: 's7', type: 'Player', name: 'Lionel Messi', country: 'Argentina', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=messi', flag: 'https://flagcdn.com/w40/ar.png', subtitle: 'Forward' },
   { id: 's8', type: 'Player', name: 'Cristiano Ronaldo', country: 'Portugal', followers: '10M+', logo: 'https://i.pravatar.cc/150?u=cr7', flag: 'https://flagcdn.com/w40/pt.png', subtitle: 'Forward' },
   { id: 's9', type: 'Competition', name: 'English Premier League', country: 'England', followers: '5M', logo: 'assets/img/leagues/premierleague.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Top Division' },
   { id: 's10', type: 'Competition', name: 'Spanish La Liga', country: 'Spain', followers: '4M', logo: 'assets/img/leagues/laliga.png', flag: 'https://flagcdn.com/w40/es.png', subtitle: 'Top Division' },
   { id: 'europa-1', type: 'Match', name: 'Genk vs Malmoe FF', country: 'World', logo: 'assets/img/leagues/europa-league.png', flag: 'https://flagcdn.com/w40/un.png', subtitle: 'Europa League' },
-  { id: 'epl-1', type: 'Match', name: 'Man City vs Arsenal', country: 'England', logo: 'https://img.vscore.com/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Premier League' },
+  { id: 'epl-1', type: 'Match', name: 'Man City vs Arsenal', country: 'England', logo: 'assets/logo/team/manchester-city.png', flag: 'https://flagcdn.com/w40/gb-eng.png', subtitle: 'Premier League' },
 ];

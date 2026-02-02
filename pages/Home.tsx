@@ -5,12 +5,14 @@ import { matchService } from '../services/matchService';
 import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
+import { useSSRData } from '../src/contexts/SSRDataContext';
 
 type DateFilter = 'YESTERDAY' | 'TODAY' | 'TOMORROW' | 'LIVE' | 'ALL';
 
 const Home: React.FC = () => {
-  const [matches, setMatches] = useState<Match[]>([]);
-  const [loading, setLoading] = useState(true);
+  const ssr = useSSRData();
+  const [matches, setMatches] = useState<Match[]>(ssr?.matches ?? []);
+  const [loading, setLoading] = useState<boolean>(ssr ? false : true);
   const [dateFilter, setDateFilter] = useState<DateFilter>('ALL');
 
   const todayStr = useMemo(() => new Date().toISOString().split('T')[0], []);
@@ -27,6 +29,13 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // If we have server-provided data for the home page and the filter is ALL, reuse it.
+      if (ssr && ssr.page === 'home' && dateFilter === 'ALL') {
+        setMatches(ssr.matches || []);
+        setLoading(false);
+        return;
+      }
+
       setLoading(true);
       let data: Match[] = [];
       
@@ -45,15 +54,16 @@ const Home: React.FC = () => {
       setLoading(false);
     };
     fetchData();
-  }, [dateFilter, yesterdayStr, todayStr, tomorrowStr]);
+  }, [dateFilter, yesterdayStr, todayStr, tomorrowStr, ssr]);
 
   // Use explicit type casting for groupedMatches to resolve 'unknown' property errors in the template
   const groupedMatches = useMemo(() => matchService.groupMatches(matches) as Record<string, GroupedMatch>, [matches]);
-  const [allMatchesForCount, setAllMatchesForCount] = useState<Match[]>([]);
+  const [allMatchesForCount, setAllMatchesForCount] = useState<Match[]>(ssr?.page === 'home' ? (ssr.matches || []) : []);
 
   useEffect(() => {
+    if (ssr && ssr.page === 'home') return; // already provided
     matchService.getAllMatches().then(data => setAllMatchesForCount(data as Match[]));
-  }, []);
+  }, [ssr]);
 
   const liveCount = useMemo(() => allMatchesForCount.filter(m => m.status === 'LIVE' as any).length, [allMatchesForCount]);
 

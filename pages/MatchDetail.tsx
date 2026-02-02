@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { matchService } from '../services/matchService';
 import { Match, MatchAnalysis, BettingOffer } from '../types';
+import { useSSRData } from '../src/contexts/SSRDataContext';
 
 const Breadcrumbs: React.FC<{ match: Match }> = ({ match }) => (
   <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-900">
@@ -165,12 +166,14 @@ const BettingOfferCard: React.FC<{ offer: BettingOffer }> = ({ offer }) => (
 );
 
 const MatchDetail: React.FC = () => {
+  const ssr = useSSRData();
   const { id } = useParams<{ id: string }>();
-  const [match, setMatch] = useState<Match | null>(null);
-  const [analysis, setAnalysis] = useState<MatchAnalysis | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [match, setMatch] = useState<Match | null>(ssr?.page === 'match' && ssr.match ? ssr.match : null);
+  const [analysis, setAnalysis] = useState<MatchAnalysis | null>(ssr?.page === 'match' && ssr.analysis ? ssr.analysis : null);
+  const [loading, setLoading] = useState<boolean>(ssr && ssr.page === 'match' ? false : true);
 
   useEffect(() => {
+    if (ssr && ssr.page === 'match' && ssr.match && ssr.match.id === id) return;
     const fetchData = async () => {
       setLoading(true);
       if (id) {
@@ -184,7 +187,7 @@ const MatchDetail: React.FC = () => {
       setLoading(false);
     };
     fetchData();
-  }, [id]);
+  }, [id, ssr]);
 
   if (loading) return (
     <div className="flex-1 flex items-center justify-center py-20 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">

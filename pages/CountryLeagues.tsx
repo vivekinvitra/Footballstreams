@@ -5,13 +5,16 @@ import { matchService } from '../services/matchService';
 import { Match } from '../types';
 import MatchCard from '../components/MatchCard';
 import OffersSidebar from '../components/OffersSidebar';
+import { useSSRData } from '../src/contexts/SSRDataContext';
 
 const CountryLeagues: React.FC = () => {
+  const ssr = useSSRData();
   const { countryName } = useParams<{ countryName: string }>();
-  const [matches, setMatches] = useState<Match[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [matches, setMatches] = useState<Match[]>(ssr?.page === 'country' && ssr.country === countryName ? (ssr.matches || []) : []);
+  const [loading, setLoading] = useState<boolean>(ssr && ssr.page === 'country' ? false : true);
 
   useEffect(() => {
+    if (ssr && ssr.page === 'country' && ssr.country === countryName) return;
     const fetchData = async () => {
       setLoading(true);
       if (countryName) {
@@ -21,7 +24,7 @@ const CountryLeagues: React.FC = () => {
       setLoading(false);
     };
     fetchData();
-  }, [countryName]);
+  }, [countryName, ssr]);
 
   // Use explicit typing for groupedByLeague to avoid inference issues
   const groupedByLeague = useMemo<Record<string, Match[]>>(() => {
