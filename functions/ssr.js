@@ -1,5 +1,13 @@
 import { render } from '../src/entry-server';
-import indexHtml from '../index.html?raw';
+
+// Don't import index.html at build time — esbuild in Pages doesn't support the `?raw` loader.
+// Instead fetch the site's index.html at runtime from the request origin.
+async function getIndexHtml(request) {
+  const origin = new URL(request.url).origin;
+  const res = await fetch(`${origin}/index.html`);
+  if (!res.ok) throw new Error(`Failed to fetch index.html: ${res.status}`);
+  return await res.text();
+}
 
 // Simple serializer that prevents closing </script> injection
 function safeSerialize(obj) {
@@ -11,6 +19,7 @@ export async function onRequest(context) {
   try {
     const { html, data, head } = await render(url);
 
+    const indexHtml = await getIndexHtml(context.request);
     let output = indexHtml.replace('<!--ssr-outlet-->', html);
 
     // Inject initial data for hydration

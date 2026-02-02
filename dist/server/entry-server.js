@@ -976,25 +976,6 @@ const SSRDataProvider = ({ data, children }) => {
 const useSSRData = () => useContext(SSRDataContext);
 const HeadContext = createContext({ add: () => {
 } });
-const HeadProvider = ({ collector, children }) => {
-  const clientApplied = useRef(false);
-  const add = (tag) => {
-    if (collector) {
-      collector.push(tag);
-    } else if (typeof window !== "undefined") {
-      try {
-        const wrapper = document.createElement("div");
-        wrapper.innerHTML = tag;
-        Array.from(wrapper.children).forEach((el) => document.head.appendChild(el));
-      } catch (err) {
-      }
-    }
-  };
-  useEffect(() => {
-    clientApplied.current = true;
-  }, []);
-  return /* @__PURE__ */ jsx(HeadContext.Provider, { value: { add }, children });
-};
 const useHead = () => useContext(HeadContext);
 const DEFAULT_TITLE = "Football Streams - Live Scores & Fixtures";
 const DEFAULT_DESCRIPTION = "Live football scores, fixtures, predictions and match analysis for leagues worldwide.";
@@ -1677,12 +1658,10 @@ async function fetchDataForUrl(url) {
 }
 async function render(url) {
   const data = await fetchDataForUrl(url);
-  const collector = [];
   const appHtml = renderToString(
-    /* @__PURE__ */ jsx(HeadProvider, { collector, children: /* @__PURE__ */ jsx(SSRDataProvider, { data, children: /* @__PURE__ */ jsx(MemoryRouter, { initialEntries: [url], children: /* @__PURE__ */ jsx(App, {}) }) }) })
+    /* @__PURE__ */ jsx(SSRDataProvider, { data, children: /* @__PURE__ */ jsx(MemoryRouter, { initialEntries: [url], children: /* @__PURE__ */ jsx(App, {}) }) })
   );
-  const head = collector.join("");
-  return { html: appHtml, data, head };
+  return { html: appHtml, data };
 }
 export {
   render as default,
