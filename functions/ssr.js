@@ -15,7 +15,16 @@ function safeSerialize(obj) {
 }
 
 export async function onRequest(context) {
-  const url = context.request.url;
+  const request = context.request;
+  const pathname = new URL(request.url).pathname;
+
+  // Bypass SSR for static assets and files (prevents recursive fetch of /index.html)
+  if (pathname === '/index.html' || pathname.startsWith('/assets') || pathname === '/favicon.ico' || pathname.includes('.')) {
+    // Let Pages serve static files directly
+    return fetch(request);
+  }
+
+  const url = request.url;
   try {
     const { html, data, head } = await render(url);
 
@@ -46,7 +55,7 @@ export async function onRequest(context) {
       headers: { 'content-type': 'text/html; charset=utf-8' }
     });
   } catch (err) {
-    console.error('SSR function error', err && err.stack ? err.stack : err);
+    console.error('SSR function error', request.url, err && err.stack ? err.stack : err);
     return new Response('Internal Server Error', { status: 500 });
   }
 }
