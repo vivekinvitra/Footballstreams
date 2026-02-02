@@ -5,6 +5,7 @@ import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
 import { useSSRData } from '../src/contexts/SSRDataContext';
+import SEO from '../components/SEO';
 
 const Live: React.FC = () => {
   const ssr = useSSRData();
@@ -27,6 +28,7 @@ const Live: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 w-full transition-colors duration-300">
+      <SEO title={`Live Football Matches — Live Scores & Streams`} description={`Watch live football matches and follow real-time scores, stats and streaming links. Updated match-by-match coverage.`} keywords={`live football, live scores, football streams, live matches`} />
       <div className="flex items-center space-x-3 mb-8">
         <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/50"></div>
         <h1 className="text-3xl font-black text-slate-900 dark:text-white">Live Matches</h1>

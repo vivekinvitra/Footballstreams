@@ -1,6 +1,7 @@
 
 import React, { useMemo } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const FooterDetails: React.FC = () => {
   const location = useLocation();
@@ -108,6 +109,7 @@ const FooterDetails: React.FC = () => {
 
   return (
     <div className="w-full flex-1 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
+      <SEO title={`${content.title} — Football Streams`} description={`${content.title} for Football Streams: details, policies and contact information.`} keywords={`${content.title}, football, policy`} />
       <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-900">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400">

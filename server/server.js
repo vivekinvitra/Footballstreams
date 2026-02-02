@@ -27,7 +27,9 @@ app.use('/img', express.static(path.resolve(process.cwd(), 'assets', 'img')));
 
 app.get('*', async (req, res) => {
   try {
-    const { html, data } = await render(req.url);
+    const { html, data, head } = await render(req.url);
+    console.log('[SSR] route=', req.url, ' headLength=', (head || '').length);
+    if (head && head.length > 0) console.log('[SSR] head sample:', head.slice(0, 200));
     let output = template.replace('<!--ssr-outlet-->', html);
     const initScript = `<script>window.__SSR_DATA__ = ${JSON.stringify(data).replace(/</g, '\\u003c')};</script>`;
     // Insert init script before the first module script so the client entry can read __SSR_DATA__ synchronously
@@ -39,6 +41,16 @@ app.get('*', async (req, res) => {
     } else {
       output = output.replace('</body>', `${initScript}</body>`);
     }
+
+    // Insert server rendered head tags if provided
+    if (head) {
+      if (output.indexOf('<!--ssr-head-->') !== -1) {
+        output = output.replace('<!--ssr-head-->', head);
+      } else if (output.indexOf('</head>') !== -1) {
+        output = output.replace('</head>', head + '\n</head>');
+      }
+    }
+
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.status(200).send(output);
   } catch (err) {

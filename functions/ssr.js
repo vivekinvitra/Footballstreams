@@ -9,7 +9,7 @@ function safeSerialize(obj) {
 export async function onRequest(context) {
   const url = context.request.url;
   try {
-    const { html, data } = await render(url);
+    const { html, data, head } = await render(url);
 
     let output = indexHtml.replace('<!--ssr-outlet-->', html);
 
@@ -22,6 +22,15 @@ export async function onRequest(context) {
       output = output.replace('</head>', initScript + '\n</head>');
     } else {
       output = output.replace('</body>', `${initScript}</body>`);
+    }
+
+    // Inject server-rendered head if available
+    if (head) {
+      if (output.indexOf('<!--ssr-head-->') !== -1) {
+        output = output.replace('<!--ssr-head-->', head);
+      } else if (output.indexOf('</head>') !== -1) {
+        output = output.replace('</head>', head + '\n</head>');
+      }
     }
 
     return new Response(output, {

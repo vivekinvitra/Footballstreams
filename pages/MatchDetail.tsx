@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { matchService } from '../services/matchService';
 import { Match, MatchAnalysis, BettingOffer } from '../types';
 import { useSSRData } from '../src/contexts/SSRDataContext';
+import SEO from '../components/SEO';
 
 const Breadcrumbs: React.FC<{ match: Match }> = ({ match }) => (
   <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-900">
@@ -204,6 +205,7 @@ const MatchDetail: React.FC = () => {
 
   return (
     <div className="w-full flex-1 bg-gray-100 dark:bg-slate-950 transition-colors duration-300">
+      <SEO title={`${match.homeTeam.name} vs ${match.awayTeam.name} — Match Preview, Stream & Live Score`} description={`Live stream, score, statistics and expert predictions for ${match.homeTeam.name} vs ${match.awayTeam.name} in ${match.league}. Match analysis and betting tips.`} keywords={`${match.homeTeam.name}, ${match.awayTeam.name}, ${match.league}, live score`} />
       <Breadcrumbs match={match} />
       <MatchHero match={match} />
 

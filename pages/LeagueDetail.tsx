@@ -6,6 +6,7 @@ import { Match } from '../types';
 import MatchCard from '../components/MatchCard';
 import OffersSidebar from '../components/OffersSidebar';
 import { useSSRData } from '../src/contexts/SSRDataContext';
+import SEO from '../components/SEO';
 
 const LeagueDetail: React.FC = () => {
   const ssr = useSSRData();
@@ -28,6 +29,7 @@ const LeagueDetail: React.FC = () => {
 
   return (
     <div className="w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300">
+      <SEO title={`${leagueName} Fixtures & Results — ${countryName}`} description={`Latest fixtures, results and upcoming matches for ${leagueName} in ${countryName}. Full schedule and match details.`} keywords={`${leagueName}, ${countryName}, fixtures, results`} />
       <div className="bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400">

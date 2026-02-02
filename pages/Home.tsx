@@ -6,6 +6,7 @@ import { Match, GroupedMatch } from '../types';
 import MatchCard from '../components/MatchCard';
 import Sidebar from '../components/Sidebar';
 import { useSSRData } from '../src/contexts/SSRDataContext';
+import SEO from '../components/SEO';
 
 type DateFilter = 'YESTERDAY' | 'TODAY' | 'TOMORROW' | 'LIVE' | 'ALL';
 
@@ -69,6 +70,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 w-full transition-colors duration-300">
+      <SEO title={`Football Streams — Live Scores, Fixtures & Predictions`} description={`Live football streams, scores, fixtures, match analysis and predictions across Premier League, La Liga, Bundesliga and more.`} keywords={`football live stream, live scores, fixtures, predictions, match analysis`} />
       <h1 className="text-3xl font-black text-slate-900 dark:text-white mb-8">Football Leagues</h1>
 
       <div className="flex flex-col lg:flex-row gap-8">

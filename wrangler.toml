@@ -1,0 +1,14 @@
+# Wrangler config for Cloudflare (Pages + Functions). Replace the placeholders below with your account values.
+name = "footballstreams-pages"
+account_id = "7665929d6033a9ce0155dcf80dcbf391"
+compatibility_date = "2026-02-02"
+
+# Set the build command and directory used by Pages when not overridden in the Pages UI.
+[build]
+command = "npm run build"
+directory = "dist"
+
+# If you want to preview locally with `wrangler pages dev`, enable the following:
+# [dev]
+# ip = "127.0.0.1"
+# port = 8787

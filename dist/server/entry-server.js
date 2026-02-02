@@ -974,6 +974,53 @@ const SSRDataProvider = ({ data, children }) => {
   return /* @__PURE__ */ jsx(SSRDataContext.Provider, { value: data, children });
 };
 const useSSRData = () => useContext(SSRDataContext);
+const HeadContext = createContext({ add: () => {
+} });
+const HeadProvider = ({ collector, children }) => {
+  const clientApplied = useRef(false);
+  const add = (tag) => {
+    if (collector) {
+      collector.push(tag);
+    } else if (typeof window !== "undefined") {
+      try {
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = tag;
+        Array.from(wrapper.children).forEach((el) => document.head.appendChild(el));
+      } catch (err) {
+      }
+    }
+  };
+  useEffect(() => {
+    clientApplied.current = true;
+  }, []);
+  return /* @__PURE__ */ jsx(HeadContext.Provider, { value: { add }, children });
+};
+const useHead = () => useContext(HeadContext);
+const DEFAULT_TITLE = "Football Streams - Live Scores & Fixtures";
+const DEFAULT_DESCRIPTION = "Live football scores, fixtures, predictions and match analysis for leagues worldwide.";
+const DEFAULT_KEYWORDS = "football, live, scores, fixtures, predictions, leagues";
+function escapeHtml(s) {
+  if (!s) return "";
+  return String(s).replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+const SEO = ({ title, description, keywords }) => {
+  const { add } = useHead();
+  const pageTitle = title ? `${title} | ${DEFAULT_TITLE}` : DEFAULT_TITLE;
+  const titleTag = `<title>${escapeHtml(pageTitle)}</title>`;
+  const metaDesc = `<meta name="description" content="${escapeHtml(description || DEFAULT_DESCRIPTION)}">`;
+  const metaKeys = `<meta name="keywords" content="${escapeHtml(keywords || DEFAULT_KEYWORDS)}">`;
+  const ogTitle = `<meta property="og:title" content="${escapeHtml(pageTitle)}">`;
+  const ogDesc = `<meta property="og:description" content="${escapeHtml(description || DEFAULT_DESCRIPTION)}">`;
+  const headString = `${titleTag}${metaDesc}${metaKeys}${ogTitle}${ogDesc}`;
+  if (typeof window === "undefined") {
+    add(headString);
+    return null;
+  }
+  useEffect(() => {
+    add(headString);
+  }, [title, description, keywords]);
+  return null;
+};
 const Home = () => {
   const ssr = useSSRData();
   const [matches, setMatches] = useState((ssr == null ? void 0 : ssr.matches) ?? []);
@@ -1020,6 +1067,7 @@ const Home = () => {
   }, [ssr]);
   const liveCount = useMemo(() => allMatchesForCount.filter((m) => m.status === "LIVE").length, [allMatchesForCount]);
   return /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 py-8 w-full transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `Football Streams — Live Scores, Fixtures & Predictions`, description: `Live football streams, scores, fixtures, match analysis and predictions across Premier League, La Liga, Bundesliga and more.`, keywords: `football live stream, live scores, fixtures, predictions, match analysis` }),
     /* @__PURE__ */ jsx("h1", { className: "text-3xl font-black text-slate-900 dark:text-white mb-8", children: "Football Leagues" }),
     /* @__PURE__ */ jsxs("div", { className: "flex flex-col lg:flex-row gap-8", children: [
       /* @__PURE__ */ jsxs("div", { className: "flex-1 min-w-0", children: [
@@ -1229,6 +1277,7 @@ const MatchDetail = () => {
     /* @__PURE__ */ jsx(Link, { to: "/", className: "bg-green-500 text-black px-6 py-2 rounded-lg font-bold hover:bg-green-400 transition-colors", children: "Back to Fixtures" })
   ] });
   return /* @__PURE__ */ jsxs("div", { className: "w-full flex-1 bg-gray-100 dark:bg-slate-950 transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `${match.homeTeam.name} vs ${match.awayTeam.name} — Match Preview, Stream & Live Score`, description: `Live stream, score, statistics and expert predictions for ${match.homeTeam.name} vs ${match.awayTeam.name} in ${match.league}. Match analysis and betting tips.`, keywords: `${match.homeTeam.name}, ${match.awayTeam.name}, ${match.league}, live score` }),
     /* @__PURE__ */ jsx(Breadcrumbs, { match }),
     /* @__PURE__ */ jsx(MatchHero, { match }),
     /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4 py-8", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col lg:flex-row gap-8", children: [
@@ -1330,6 +1379,7 @@ const CountryLeagues = () => {
   }, [matches]);
   const availableLeagues = useMemo(() => Object.keys(groupedByLeague), [groupedByLeague]);
   return /* @__PURE__ */ jsxs("div", { className: "w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `${countryName} Football — Leagues, Fixtures & Results`, description: `Comprehensive fixtures and results for football leagues in ${countryName}. Browse league tables, matches and match analysis.`, keywords: `${countryName} football, leagues, fixtures, results` }),
     /* @__PURE__ */ jsx("div", { className: "bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-800", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400", children: [
       /* @__PURE__ */ jsx(Link, { to: "/", className: "hover:text-green-500 transition-colors", children: "Home" }),
       /* @__PURE__ */ jsx("span", { children: "»" }),
@@ -1389,6 +1439,7 @@ const LeagueDetail = () => {
     fetchData();
   }, [countryName, leagueName, ssr]);
   return /* @__PURE__ */ jsxs("div", { className: "w-full bg-gray-100 dark:bg-slate-950 flex-1 transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `${leagueName} Fixtures & Results — ${countryName}`, description: `Latest fixtures, results and upcoming matches for ${leagueName} in ${countryName}. Full schedule and match details.`, keywords: `${leagueName}, ${countryName}, fixtures, results` }),
     /* @__PURE__ */ jsx("div", { className: "bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-800", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400", children: [
       /* @__PURE__ */ jsx(Link, { to: "/", className: "hover:text-green-500 transition-colors", children: "Home" }),
       /* @__PURE__ */ jsx("span", { children: "»" }),
@@ -1438,6 +1489,7 @@ const Live = () => {
   }, [ssr]);
   const groupedMatches = useMemo(() => matchService.groupMatches(matches), [matches]);
   return /* @__PURE__ */ jsxs("div", { className: "max-w-7xl mx-auto px-4 py-8 w-full transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `Live Football Matches — Live Scores & Streams`, description: `Watch live football matches and follow real-time scores, stats and streaming links. Updated match-by-match coverage.`, keywords: `live football, live scores, football streams, live matches` }),
     /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-3 mb-8", children: [
       /* @__PURE__ */ jsx("div", { className: "w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-lg shadow-red-500/50" }),
       /* @__PURE__ */ jsx("h1", { className: "text-3xl font-black text-slate-900 dark:text-white", children: "Live Matches" })
@@ -1554,6 +1606,7 @@ const FooterDetails = () => {
     }
   }, [path]);
   return /* @__PURE__ */ jsxs("div", { className: "w-full flex-1 bg-gray-100 dark:bg-slate-950 transition-colors duration-300", children: [
+    /* @__PURE__ */ jsx(SEO, { title: `${content.title} — Football Streams`, description: `${content.title} for Football Streams: details, policies and contact information.`, keywords: `${content.title}, football, policy` }),
     /* @__PURE__ */ jsx("div", { className: "bg-slate-900 dark:bg-black text-white py-4 border-b border-gray-800 dark:border-slate-900", children: /* @__PURE__ */ jsx("div", { className: "max-w-7xl mx-auto px-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-gray-400", children: [
       /* @__PURE__ */ jsx(Link, { to: "/", className: "hover:text-green-500 transition-colors", children: "Home" }),
       /* @__PURE__ */ jsx("span", { children: "»" }),
@@ -1624,10 +1677,12 @@ async function fetchDataForUrl(url) {
 }
 async function render(url) {
   const data = await fetchDataForUrl(url);
+  const collector = [];
   const appHtml = renderToString(
-    /* @__PURE__ */ jsx(SSRDataProvider, { data, children: /* @__PURE__ */ jsx(MemoryRouter, { initialEntries: [url], children: /* @__PURE__ */ jsx(App, {}) }) })
+    /* @__PURE__ */ jsx(HeadProvider, { collector, children: /* @__PURE__ */ jsx(SSRDataProvider, { data, children: /* @__PURE__ */ jsx(MemoryRouter, { initialEntries: [url], children: /* @__PURE__ */ jsx(App, {}) }) }) })
   );
-  return { html: appHtml, data };
+  const head = collector.join("");
+  return { html: appHtml, data, head };
 }
 export {
   render as default,
