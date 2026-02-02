@@ -1,4 +1,4 @@
-import { render } from '../src/entry-server';
+import { render } from '../dist/server/entry-server.js';
 
 // Don't import index.html at build time — esbuild in Pages doesn't support the `?raw` loader.
 // Instead fetch the site's index.html at runtime from the request origin.
@@ -46,7 +46,7 @@ export async function onRequest(context) {
       headers: { 'content-type': 'text/html; charset=utf-8' }
     });
   } catch (err) {
-    console.error('SSR function error', err);
+    console.error('SSR function error', err && err.stack ? err.stack : err);
     return new Response('Internal Server Error', { status: 500 });
   }
 }
