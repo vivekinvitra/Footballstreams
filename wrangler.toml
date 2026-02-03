@@ -2,7 +2,10 @@
 name = "footballstreams-pages"
 account_id = "7665929d6033a9ce0155dcf80dcbf391"
 compatibility_date = "2026-02-02"
-pages_build_output_dir = "dist"
+
+# Set the build command and directory used by Pages when not overridden in the Pages UI.
+[build]
+command = "npm run build"
 
 # If you want to preview locally with `wrangler pages dev`, enable the following:
 # [dev]
