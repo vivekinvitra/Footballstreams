@@ -43,7 +43,12 @@ export async function onRequest(context) {
     try {
       renderer = await getRender();
     } catch (err) {
-      console.error('SSR import error', err);
+      console.error('SSR import error', err && err.stack ? err.stack : err);
+      // Show detailed error when debugging locally using ?__ssr_debug=1
+      if (new URL(request.url).searchParams.get('__ssr_debug') === '1') {
+        const body = err && err.stack ? err.stack : String(err);
+        return new Response(body, { status: 500, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+      }
       return new Response('Internal Server Error', { status: 500 });
     }
     const { html, data, head } = await renderer(request.url);
@@ -59,7 +64,12 @@ export async function onRequest(context) {
       headers: { 'content-type': 'text/html; charset=utf-8' }
     });
   } catch (e) {
-    console.error(e);
+    console.error('SSR render error', e && e.stack ? e.stack : e);
+    // Return stack trace when debugging with ?__ssr_debug=1
+    if (new URL(request.url).searchParams.get('__ssr_debug') === '1') {
+      const body = e && e.stack ? e.stack : String(e);
+      return new Response(body, { status: 500, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+    }
     return new Response('Internal Server Error', { status: 500 });
   }
 }
