@@ -1,4 +1,17 @@
-import { render } from '../src/entry-server';
+// Lazy-load server renderer to avoid startup failure if `dist/server/entry-server.js` isn't available at bundle time.
+let _render;
+async function getRender() {
+  if (!_render) {
+    try {
+      const mod = await import('../src/entry-server.js');
+      _render = mod.render || mod.default;
+    } catch (err) {
+      console.error('Failed to import SSR bundle', err);
+      throw err;
+    }
+  }
+  return _render;
+}
 
 console.log("SSR FUNCTION LOADED");
 
@@ -26,7 +39,14 @@ export async function onRequest(context) {
   }
 
   try {
-    const { html, data, head } = await render(request.url);
+    let renderer;
+    try {
+      renderer = await getRender();
+    } catch (err) {
+      console.error('SSR import error', err);
+      return new Response('Internal Server Error', { status: 500 });
+    }
+    const { html, data, head } = await renderer(request.url);
     let page = await getIndexHtml(request);
 
     page = page.replace('<!--ssr-outlet-->', html);
