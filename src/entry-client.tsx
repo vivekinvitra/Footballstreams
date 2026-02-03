@@ -1,6 +1,6 @@
 import React from 'react';
 import { hydrateRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 import { SSRDataProvider } from './contexts/SSRDataContext';
 import { HeadProvider } from './contexts/HeadContext';
@@ -12,9 +12,9 @@ hydrateRoot(document.getElementById('root') as HTMLElement, (
   <React.StrictMode>
     <HeadProvider>
       <SSRDataProvider data={ssrData}>
-        <BrowserRouter>
+        <MemoryRouter>
           <App />
-        </BrowserRouter>
+        </MemoryRouter>
       </SSRDataProvider>
     </HeadProvider>
   </React.StrictMode>

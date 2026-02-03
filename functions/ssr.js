@@ -1,63 +1,45 @@
-import { render } from '../dist/server/entry-server.js';
+import { render } from '../src/entry-server';
 
-// Don't import index.html at build time — esbuild in Pages doesn't support the `?raw` loader.
-// Instead fetch the site's index.html at runtime from the request origin.
+console.log("SSR FUNCTION LOADED");
+
 async function getIndexHtml(request) {
   const origin = new URL(request.url).origin;
   const res = await fetch(`${origin}/index.html`);
-  if (!res.ok) throw new Error(`Failed to fetch index.html: ${res.status}`);
-  return await res.text();
+  if (!res.ok) throw new Error(`Failed to fetch index.html`);
+  return res.text();
 }
 
-// Simple serializer that prevents closing </script> injection
 function safeSerialize(obj) {
   return JSON.stringify(obj).replace(/</g, '\\u003c');
 }
 
 export async function onRequest(context) {
-  const request = context.request;
+  const { request } = context;
   const pathname = new URL(request.url).pathname;
 
-  // Bypass SSR for static assets and files (prevents recursive fetch of /index.html)
-  if (pathname === '/index.html' || pathname.startsWith('/assets') || pathname === '/favicon.ico' || pathname.includes('.')) {
-    // Let Pages serve static files directly
+  if (
+    pathname === '/index.html' ||
+    pathname.startsWith('/assets') ||
+    pathname.includes('.')
+  ) {
     return fetch(request);
   }
 
-  const url = request.url;
   try {
-    const { html, data, head } = await render(url);
+    const { html, data, head } = await render(request.url);
+    let page = await getIndexHtml(request);
 
-    const indexHtml = await getIndexHtml(context.request);
-    let output = indexHtml.replace('<!--ssr-outlet-->', html);
+    page = page.replace('<!--ssr-outlet-->', html);
+    page = page.replace(
+      '</head>',
+      `${head}<script>window.__SSR_DATA__=${safeSerialize(data)}</script></head>`
+    );
 
-    // Inject initial data for hydration
-    const initScript = `<script>window.__SSR_DATA__ = ${safeSerialize(data)};</script>`;
-    const moduleScriptIndex = output.indexOf('<script type="module"');
-    if (moduleScriptIndex !== -1) {
-      output = output.slice(0, moduleScriptIndex) + initScript + '\n' + output.slice(moduleScriptIndex);
-    } else if (output.indexOf('</head>') !== -1) {
-      output = output.replace('</head>', initScript + '\n</head>');
-    } else {
-      output = output.replace('</body>', `${initScript}</body>`);
-    }
-
-    // Inject server-rendered head if available
-    if (head) {
-      if (output.indexOf('<!--ssr-head-->') !== -1) {
-        output = output.replace('<!--ssr-head-->', head);
-      } else if (output.indexOf('</head>') !== -1) {
-        output = output.replace('</head>', head + '\n</head>');
-      }
-    }
-
-    return new Response(output, {
+    return new Response(page, {
       headers: { 'content-type': 'text/html; charset=utf-8' }
     });
-  } catch (err) {
-    console.error('SSR function error', request.url, err && err.stack ? err.stack : err);
+  } catch (e) {
+    console.error(e);
     return new Response('Internal Server Error', { status: 500 });
   }
 }
-
-export default { onRequest };

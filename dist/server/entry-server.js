@@ -1661,7 +1661,12 @@ async function render(url) {
   const appHtml = renderToString(
     /* @__PURE__ */ jsx(SSRDataProvider, { data, children: /* @__PURE__ */ jsx(MemoryRouter, { initialEntries: [url], children: /* @__PURE__ */ jsx(App, {}) }) })
   );
-  return { html: appHtml, data };
+  return {
+    html: appHtml,
+    data,
+    head: ""
+    // required
+  };
 }
 export {
   render as default,

@@ -16,7 +16,11 @@ export async function render(url: string) {
     </SSRDataProvider>
   );
 
-  return { html: appHtml, data };
+  return {
+    html: appHtml,
+    data,
+    head: '' // required
+  };
 }
 
 export default render;
